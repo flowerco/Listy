@@ -46,7 +46,7 @@ const config = {
   baseURL: 'http://localhost:3000',
   clientID: '6aFL4m1lJjcg6n26300PoGgjf8fExYZ1',
   issuerBaseURL: 'https://listy.us.auth0.com',
-  secret: 'o6XnZn_6Fh2Y9pw2RC4s5ZcBZvpPJqjsc4xU3povXtI48gH24pOIio-31IoP6wJu'
+  secret: '-31IoP6wJu'
 };
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
