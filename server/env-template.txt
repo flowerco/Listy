@@ -1,0 +1,1 @@
+ATLAS_URI = mongodb+srv://<username>:<password>@<db-cluster-name>.cx5mfa6.mongodb.net/?retryWrites=true&w=majority

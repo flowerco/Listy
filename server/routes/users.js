@@ -9,7 +9,6 @@ router.get('/posts', [checkJwt, checkJwt2], async (req, res) => {
     res.status(200).json(posts)
 })
 
-
 //TODO: GET A USER -> will be used in the search 
 //get a user
 // router.get('/:id', async (req, res) => {
