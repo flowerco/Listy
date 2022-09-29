@@ -1,12 +1,13 @@
-const router = require('express').Router();
-const Post = require('../Models/Post');
-const User = require('../Models/User');
-const axios = require('axios');
-const { checkJwt, checkJwt2 } = require('./middleware')
+import { Router } from "express";
+import * as Post from "../Models/Post";
+import * as User from "../Models/User";
+import axios from "axios";
+import { checkJwt, checkJwt2 } from "./middleware";
 
+const router = Router();
 
 //ADD A POST (with jwt, recognizes which user created the post)
-router.post('/', [checkJwt, checkJwt2],  async (req, res) =>{
+router.post("/", [checkJwt, checkJwt2], async (req, res) => {
   // const userId = req.auth.payload.sub.split("|")[1]
   try {
     const post = new Post({
@@ -14,20 +15,19 @@ router.post('/', [checkJwt, checkJwt2],  async (req, res) =>{
       rating: req.body.rating,
       genre: req.body.genre,
       userId: req.auth.userId,
-      image: req.body.image.base64
+      image: req.body.image.base64,
     });
     //TODO: add error handling
     await post.save();
-    console.log(req.body)
+    console.log(req.body);
     res.status(201).json(post);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.sendStatus(400);
   }
-})
+});
 
-
-//TODO: fix update a post 
+//TODO: fix update a post
 
 // router.put('/:id', async (req, res) => {
 //   try {
@@ -53,43 +53,41 @@ router.post('/', [checkJwt, checkJwt2],  async (req, res) =>{
 //       }
 // })
 
-
-
 //delete a post
-router.delete('/post/delete/:id', async (req, res) =>{
+router.delete("/post/delete/:id", async (req, res) => {
   try {
-    const result = await Post.findByIdAndDelete(req.params.id)
-    res.json(result)
+    const result = await Post.findByIdAndDelete(req.params.id);
+    res.json(result);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-})
+});
 
 //like and dislake  a post
-router.put('/:id/like', async (req, res) =>{
+router.put("/:id/like", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
-    if (!post.likes.includes(req.body.userId)){
-      await post.updateOne({ $push: {likes: req.body.userId}});
-      res.status(200).json('The post has been liked')
-    } else{
-      await post.updateOne({ $pull: {likes: req.body.userId}});
-      res.status(200).json('The post has been disliked')
+    if (!post.likes.includes(req.body.userId)) {
+      await post.updateOne({ $push: { likes: req.body.userId } });
+      res.status(200).json("The post has been liked");
+    } else {
+      await post.updateOne({ $pull: { likes: req.body.userId } });
+      res.status(200).json("The post has been disliked");
     }
   } catch (error) {
-      res.status(500).json(error)
+    res.status(500).json(error);
   }
-})
+});
 
 //get a post
-router.get('/:id', async (req, res) =>{
+router.get("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
-    res.status(200).json(post)
+    res.status(200).json(post);
   } catch (error) {
-    res.status(500).json(error)
+    res.status(500).json(error);
   }
-})
+});
 
 //TODO: FIX USER MAIN FEED WITH AUTH
 
@@ -105,30 +103,28 @@ router.get('/:id', async (req, res) =>{
 //       })
 //     )
 //     res.json(userPosts.concat(...friendPosts))
-    
+
 //   } catch (error) {
 //     res.status(500).json(error)
 //   }
 
 // })
 
-router.get('/mainfeed/:userId', async (req, res) =>{
+router.get("/mainfeed/:userId", async (req, res) => {
   try {
     const currUser = await User.findById(req.params.userId);
-    const userPosts = await Post.find({ userId: req.params.userId});
+    const userPosts = await Post.find({ userId: req.params.userId });
     const friendPosts = await Promise.all(
-      currUser.following.map((friendId) =>{
+      currUser.following.map((friendId) => {
         //this will return each post
-        return Post.find({ userId: friendId});
+        return Post.find({ userId: friendId });
       })
-    )
-    res.json(userPosts.concat(...friendPosts))
-    
+    );
+    res.json(userPosts.concat(...friendPosts));
   } catch (error) {
-    res.status(500).json(error)
+    res.status(500).json(error);
   }
-
-})
+});
 
 // router.get('/mainfeed', [checkJwt, checkJwt2], async (req, res) =>{
 //   const userId = req.currUser;
@@ -153,7 +149,7 @@ router.get('/mainfeed/:userId', async (req, res) =>{
 //     ])
 
 //     res.status(200).json(userPosts.concat(...friendPosts[0].friendPosts))
-    
+
 //   } catch (error) {
 //     res.status(500).json(error)
 //   }
@@ -165,7 +161,7 @@ router.get('/mainfeed/:userId', async (req, res) =>{
 //   res.status(200).json(posts)
 // })
 
-//get users all post 
+//get users all post
 // router.get('/profile', [checkJwt, checkJwt2], async (req, res) =>{
 //   try {
 //     const user = await User.findOne({ userId: req.auth.userId });
@@ -178,14 +174,14 @@ router.get('/mainfeed/:userId', async (req, res) =>{
 // })
 
 // router.get('/profile', async (req, res) => {
-//     try { 
+//     try {
 //         const posts = await Post.find();
-        
+
 //         res.json(posts)
-        
+
 //     } catch (error) {
 //         console.log(error)
-//         res.sendStatus(400)  
+//         res.sendStatus(400)
 //     }
 // })
 
@@ -204,7 +200,5 @@ router.get('/mainfeed/:userId', async (req, res) =>{
 //       res.sendStatus(400);
 //     }
 //   })
-
- 
 
 module.exports = router;
