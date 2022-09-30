@@ -1,14 +1,11 @@
 import express from "express";
-import mongoose from "mongoose";
+import mongoose, { ConnectOptions } from "mongoose";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import * as dotenv from "dotenv";
 const { auth } = require("express-openid-connect");
-const Post = require("./Models/Post");
-const userRoute = require("./routes/users");
-const postRoute = require("./routes/posts");
-// const authRoute = require('./routes/auth');
+const router = require('./router');
 
 dotenv.config();
 if (!process.env.PORT) {
@@ -26,18 +23,19 @@ app.use(morgan("common"));
 app.use(express.json());
 
 //address for rest API
-app.use("/api/users", userRoute);
-app.use("/api/posts", postRoute);
+// app.use("/api/users", userRoute);
+// app.use("/api/posts", postRoute);
+app.use(router);
 
 //IGNORE
 // app.use('/api/auth', authRoute);
 
-const atlasUri = process.env.ATLAS_URI;
+const atlasUri = <string>process.env.ATLAS_URI;
 
 mongoose.connect(atlasUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+} as ConnectOptions);
 
 const connection = mongoose.connection;
 connection.once("open", () => console.log("Database connection successful🍃"));

@@ -1,5 +1,5 @@
 import { auth } from "express-oauth2-jwt-bearer";
-import * as User from "../Models/User";
+import * as User from "../models/User";
 import express, { NextFunction } from "express";
 import { expressjwt, GetVerificationKey } from "express-jwt";
 import jwksRsa from "jwks-rsa";
