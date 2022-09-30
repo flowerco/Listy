@@ -1,17 +1,10 @@
 // import mongoose from "mongoose";
 // const Schema = new mongoose.Schema;
 import { Schema, model } from "mongoose";
+import { PostType } from './customTypes';
 
-interface Post {
-  userId: string;
-  name: string;
-  rating: string;
-  genre: string;
-  image: string;
-  likes: [];
-}
 
-const PostSchema = new Schema<Post>({
+const PostSchema = new Schema<PostType>({
   userId: {
     type: String,
     required: true,
@@ -33,8 +26,8 @@ const PostSchema = new Schema<Post>({
     // required: true
   },
   likes: {
-    type: [],
+    type: [String],
   },
 });
 
-export const Post = model<Post>("Post", PostSchema);
+export const Post = model<PostType>("Post", PostSchema);

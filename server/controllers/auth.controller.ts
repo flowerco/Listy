@@ -1,11 +1,10 @@
 import express, { Router } from "express";
 import { User } from '../models/User';
+import { UserType } from "../models/customTypes";
 import bcrypt from 'bcrypt';
 
-const router = Router();
-
 // //REGISTER
-router.post('/register', async (req: express.Request, res: express.Response) =>{
+export const register =  async (req: express.Request, res: express.Response) =>{
     
     try {
         //generate new password
@@ -26,18 +25,10 @@ router.post('/register', async (req: express.Request, res: express.Response) =>{
         // console.log(error)
         res.status(500).json(error);
     }
-})
-
-type UserType = {
-  _id: string;
-  email: string;
-  password: string;
-  followers: string[];
-  following: string[];
-}
+};
 
 // //LOGIN
-router.post('/login', async (req: express.Request, res: express.Response) => {
+export const login = async (req: express.Request, res: express.Response) => {
     try {
         const user = await User.findOne({email: req.body.email}) as UserType;
         !user && res.status(404).send('user not found');
@@ -52,6 +43,4 @@ router.post('/login', async (req: express.Request, res: express.Response) => {
         res.status(500).json(error);
     }
 
-})
-
-// module.exports = router;
+};

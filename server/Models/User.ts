@@ -1,28 +1,25 @@
 import { Schema, model } from "mongoose";
+import { UserType } from "./customTypes";
 
-interface User {
-  _id: string;
-  followers: [];
-  following: [];
-}
-
-const UserSchema = new Schema<User>(
+const UserSchema = new Schema<UserType>(
   {
     _id: {
       type: String,
       required: true,
       unique: true,
     },
+    email: String, 
+    password: String,
     followers: {
-      type: [],
+      type: [String],
       default: [],
     },
     following: {
-      type: [],
+      type: [String],
       default: [],
     },
   },
   { _id: false }
 );
 
-export const User = model<User>("User", UserSchema);
+export const User = model<UserType>("User", UserSchema);
