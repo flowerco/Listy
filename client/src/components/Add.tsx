@@ -1,15 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, SetStateAction } from 'react';
 import './Add.css';
 const FileBase64 = require('react-file-base64');
+
 import { useAuth0 } from '@auth0/auth0-react';
+import { PostObj } from '../../customTypes';
+import { ObjectId } from 'bson';
 
 export const Add = () => {
 	const { getAccessTokenSilently, getAccessTokenWithPopup } = useAuth0();
-	const [posts, setPosts] = useState([]);
+	const [posts, setPosts] = useState([] as PostObj[]);
 	const [name, setName] = useState('');
 	const [rating, setRating] = useState('');
 	const [genre, setGenre] = useState('');
-	const [image, setImage] = useState('');
+	const [image, setImage] = useState({ base64: '' });
 	const [popupActive, setPopupActive] = useState(false);
 
 	useEffect(() => {
@@ -32,10 +35,10 @@ export const Add = () => {
 		fetchUserPosts();
 	}, []);
 
-	const onSubmit = (e) => {
+	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		const onPostAdded = async (obj) => {
+		const onPostAdded = async () => {
 			let accessToken = '';
 			const opts = {
 				audience: 'http://localhost:3030',
@@ -52,7 +55,6 @@ export const Add = () => {
 
 			const newPost = await fetch('http://localhost:3030/api/posts', {
 				method: 'POST',
-				headers: { 'Content-type': 'application/json' },
 				headers: {
 					'Content-type': 'application/json',
 					Authorization: `Bearer ${accessToken}`,
@@ -75,10 +77,10 @@ export const Add = () => {
 		setName('');
 		setRating('');
 		setGenre('');
-		setImage('');
+		setImage({ base64: '' });
 	};
 
-	const deletePost = async (id) => {
+	const deletePost = async (id: ObjectId) => {
 		const data = await fetch(
 			'http://localhost:3030/api/posts/post/delete/' + id,
 			{
@@ -120,7 +122,9 @@ export const Add = () => {
 									<FileBase64
 										type='file'
 										multiple={false}
-										onDone={({ base64 }) => setImage({ base64 })}
+										onDone={({ base64 }: { base64: string }) =>
+											setImage({ base64 })
+										}
 										value={image}
 									/>
 								</div>
@@ -174,7 +178,7 @@ export const Add = () => {
 
 			<section className='posts-container'>
 				{posts.map((post) => (
-					<div className='image-and-post' key={post._id}>
+					<div className='image-and-post' key={post._id.toString()}>
 						<img className='post-image' src={post.image} />
 						<section className='post-container'>
 							<h1 className='post-name'>{post.name}</h1>
