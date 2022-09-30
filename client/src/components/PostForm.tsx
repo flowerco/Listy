@@ -1,83 +1,35 @@
-import { useState, useEffect, SetStateAction } from 'react';
 import './Add.css';
-const FileBase64 = require('react-file-base64');
-
+import { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { PostObj } from '../../customTypes';
 import { ObjectId } from 'bson';
+import { fetchUserPosts } from '../utils/PostFormServices';
+import { onPostAdded } from '../utils/PostFormServices';
+const FileBase64 = require('react-file-base64');
 
-export const Add = () => {
+export const PostForm = () => {
 	const { getAccessTokenSilently, getAccessTokenWithPopup } = useAuth0();
 	const [posts, setPosts] = useState([] as PostObj[]);
-	const [name, setName] = useState('');
-	const [rating, setRating] = useState('');
-	const [genre, setGenre] = useState('');
-	const [image, setImage] = useState({ base64: '' });
 	const [popupActive, setPopupActive] = useState(false);
 
+	const initialState = {
+		name: '',
+		rating: '',
+		genre: '',
+		image: { base64: '' },
+	};
+	const [postData, setPostData] = useState(initialState);
+
 	useEffect(() => {
-		const fetchUserPosts = async () => {
-			try {
-				const token = await getAccessTokenSilently();
-
-				const response = await fetch('http://localhost:3030/api/users/posts', {
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-				});
-
-				const responseData = await response.json();
-				setPosts(responseData);
-			} catch (error) {
-				console.error('Error: ', error);
-			}
-		};
-		fetchUserPosts();
+		fetchUserPosts().then((res) => setPosts(res));
 	}, []);
 
 	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		const onPostAdded = async () => {
-			let accessToken = '';
-			const opts = {
-				audience: 'http://localhost:3030',
-				scope: 'write:posts openid',
-			};
-			try {
-				accessToken = await getAccessTokenSilently(opts);
-			} catch (e) {
-				console.warn(
-					'consent required as we are running in localhost. Using workaround https://github.com/auth0/auth0-react/issues/65'
-				);
-				accessToken = await getAccessTokenWithPopup(opts);
-			}
-
-			const newPost = await fetch('http://localhost:3030/api/posts', {
-				method: 'POST',
-				headers: {
-					'Content-type': 'application/json',
-					Authorization: `Bearer ${accessToken}`,
-				},
-				body: JSON.stringify({
-					name: name,
-					rating: rating,
-					genre: genre,
-					image: image,
-				}),
-			});
-			// TODO: add error handling
-			const res = await newPost.json();
-			setPosts([...posts, res]);
-		};
-
-		onPostAdded();
-
+		onPostAdded(postData).then((res) => setPosts([...posts, res]));
 		//clears out the fields after post
-		setName('');
-		setRating('');
-		setGenre('');
-		setImage({ base64: '' });
+		setPostData(initialState);
 	};
 
 	const deletePost = async (id: ObjectId) => {

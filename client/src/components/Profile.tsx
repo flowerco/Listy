@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { Add } from './Add';
+import { PostForm } from './PostForm';
 import { ReactElement } from 'react';
 
 const Profile = (): ReactElement => {
@@ -19,7 +19,7 @@ const Profile = (): ReactElement => {
 					</button>
 				</section>
 				<div className='posts-container'>
-					<Add />
+					<PostForm />
 				</div>
 			</article>
 		</main>
