@@ -1,21 +1,44 @@
 import { auth } from "express-oauth2-jwt-bearer";
 import * as User from "../Models/User";
 import express, { NextFunction } from "express";
+import { expressjwt, GetVerificationKey } from "express-jwt";
+import jwksRsa from "jwks-rsa";
+import { expressJwtSecret } from "jwks-rsa";
+import * as dotenv from "dotenv";
 
+dotenv.config();
 // Authorization middleware. When used, the Access Token must
 // exist and be verified against the Auth0 JSON Web Key Set.
-export const checkJwt = auth({
-  audience: "http://localhost:3030",
-  issuerBaseURL: `https://listy.us.auth0.com/`,
+export const checkJwt = expressjwt({
+  secret: expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`,
+  }) as GetVerificationKey,
+  audience: process.env.AUTH0_AUDIENCE,
+  issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+  algorithms: ["RS256"],
 });
 
+interface AuthReq extends Express.Request {
+  auth: {
+    userId: string;
+    payload: string;
+  };
+  currUser: {
+    followers: string[];
+    following: string[];
+  };
+}
+
 export const checkJwt2 = async (
-  req: express.Request,
+  req: AuthReq,
   res: express.Response,
   next: NextFunction
 ) => {
-  req.auth.userId = req.auth.payload.sub.split("|")[1];
-  // req.auth.userId is the userId
+  req.auth.userId = req.auth.payload.split("|")[1];
+  // req.auth.userId is the userId'req.auth' is possibly 'undefined'.ts(18048
   // console.log(req.auth.userId)
 
   //check if user is in the data base

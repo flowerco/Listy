@@ -33,7 +33,7 @@ const PostSchema = new Schema<Post>({
     // required: true
   },
   likes: {
-    type: [],
+    type: [String],
   },
 });
 

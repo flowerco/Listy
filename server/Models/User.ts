@@ -14,11 +14,11 @@ const UserSchema = new Schema<User>(
       unique: true,
     },
     followers: {
-      type: [],
+      type: [String],
       default: [],
     },
     following: {
-      type: [],
+      type: [String],
       default: [],
     },
   },
