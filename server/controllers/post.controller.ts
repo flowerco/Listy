@@ -1,9 +1,9 @@
 
-import { Router, Request, Response } from "express";
+import { Request, Response } from "express";
 import { Post }  from "../models/Post";
 import { User } from "../models/User";
 import axios from "axios";
-import { checkJwt, checkJwt2 } from "../routes/middleware";
+// import { checkJwt, checkJwt2 } from "../routes/middleware";
 
 //ADD A POST (with jwt, recognizes which user created the post)
 export const createPost = async (req: Request, res: Response) => {
@@ -13,7 +13,7 @@ export const createPost = async (req: Request, res: Response) => {
       name: req.body.name,
       rating: req.body.rating,
       genre: req.body.genre,
-      userId: req._id,
+      userId: req.body.userId,
       image: req.body.image.base64,
     });
     //TODO: add error handling

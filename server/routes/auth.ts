@@ -1,4 +1,4 @@
-import express, { Router } from "express";
+/* import express, { Router } from "express";
 import { User } from '../models/User';
 import bcrypt from 'bcrypt';
 
@@ -55,3 +55,4 @@ router.post('/login', async (req: express.Request, res: express.Response) => {
 })
 
 // module.exports = router;
+*/

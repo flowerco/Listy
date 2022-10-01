@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 export interface PostType {
   userId: string;
   name: string;
@@ -9,8 +11,13 @@ export interface PostType {
 
 export interface UserType {
   _id: string;
+  username: string;
   email: string;
   password: string;
   followers: [];
   following: [];
+}
+
+export interface UserDoc extends UserType {
+  _doc?: any
 }

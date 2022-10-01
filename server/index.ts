@@ -4,11 +4,11 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import * as dotenv from "dotenv";
-const { auth } = require("express-openid-connect");
-const router = require('./router');
+import router from './router';
 
 dotenv.config();
 if (!process.env.PORT) {
+  console.log('Error: Port not provided');
   process.exit(1);
 }
 
@@ -39,18 +39,6 @@ mongoose.connect(atlasUri, {
 
 const connection = mongoose.connection;
 connection.once("open", () => console.log("Database connection successful🍃"));
-
-const config = {
-  authRequired: false,
-  auth0Logout: true,
-  baseURL: "http://localhost:3000",
-  clientID: "6aFL4m1lJjcg6n26300PoGgjf8fExYZ1",
-  issuerBaseURL: "https://listy.us.auth0.com",
-  secret: "-31IoP6wJu",
-};
-
-// auth router attaches /login, /logout, and /callback routes to the baseURL
-app.use(auth(config));
 
 //temporary, will go to the post route later
 // app.delete('/post/:id', async (req, res) => {

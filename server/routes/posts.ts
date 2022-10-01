@@ -1,3 +1,4 @@
+/*
 import { Router } from "express";
 import * as Post from "../models/Post";
 import * as User from "../models/User";
@@ -7,6 +8,7 @@ import { checkJwt, checkJwt2 } from "./middleware";
 const router = Router();
 
 //ADD A POST (with jwt, recognizes which user created the post)
+
 router.post("/", [checkJwt, checkJwt2], async (req, res) => {
   // const userId = req.auth.payload.sub.split("|")[1]
   try {
@@ -202,3 +204,4 @@ router.get("/mainfeed/:userId", async (req, res) => {
 //   })
 
 module.exports = router;
+*/
