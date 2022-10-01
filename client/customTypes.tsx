@@ -1,6 +1,7 @@
 import { ObjectId } from 'bson';
 
 export type PostObj = {
+	id: ObjectId;
 	_id: ObjectId;
 	image: string;
 	name: string;

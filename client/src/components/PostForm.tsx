@@ -3,12 +3,15 @@ import { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { PostObj } from '../../customTypes';
 import { ObjectId } from 'bson';
-import { fetchUserPosts } from '../utils/PostFormServices';
-import { onPostAdded } from '../utils/PostFormServices';
+import {
+	fetchUserPosts,
+	onPostAdded,
+	deletePost,
+} from '../utils/PostFormServices';
+
 const FileBase64 = require('react-file-base64');
 
 export const PostForm = () => {
-	const { getAccessTokenSilently, getAccessTokenWithPopup } = useAuth0();
 	const [posts, setPosts] = useState([] as PostObj[]);
 	const [popupActive, setPopupActive] = useState(false);
 
@@ -32,15 +35,9 @@ export const PostForm = () => {
 		setPostData(initialState);
 	};
 
-	const deletePost = async (id: ObjectId) => {
-		const data = await fetch(
-			'http://localhost:3030/api/posts/post/delete/' + id,
-			{
-				method: 'DELETE',
-			}
-		).then((res) => res.json());
-
-		setPosts((posts) => posts.filter((post) => post._id !== data._id));
+	const deleteHandler = (id: ObjectId) => {
+		deletePost(id);
+		setPosts(posts.filter((post) => post.id !== post._id));
 	};
 
 	return (
@@ -75,9 +72,9 @@ export const PostForm = () => {
 										type='file'
 										multiple={false}
 										onDone={({ base64 }: { base64: string }) =>
-											setImage({ base64 })
+											(initialState.image = { base64 })
 										}
-										value={image}
+										value={initialState.image}
 									/>
 								</div>
 
@@ -89,8 +86,8 @@ export const PostForm = () => {
 										name='name'
 										type='text'
 										placeholder='movie/tv-show name'
-										onChange={(e) => setName(e.target.value)}
-										value={name}
+										onChange={(e) => (initialState.name = e.target.value)}
+										value={initialState.name}
 									/>
 								</div>
 
@@ -102,8 +99,8 @@ export const PostForm = () => {
 										name='rating'
 										type='text'
 										placeholder='rating'
-										onChange={(e) => setRating(e.target.value)}
-										value={rating}
+										onChange={(e) => (initialState.rating = e.target.value)}
+										value={initialState.rating}
 									/>
 								</div>
 
@@ -115,8 +112,8 @@ export const PostForm = () => {
 										name='genre'
 										type='text'
 										placeholder='genre'
-										onChange={(e) => setGenre(e.target.value)}
-										value={genre}
+										onChange={(e) => (initialState.genre = e.target.value)}
+										value={initialState.genre}
 									/>
 								</div>
 							</div>
@@ -138,7 +135,7 @@ export const PostForm = () => {
 							<p className='post-genre'>{post.genre}</p>
 							<button
 								className='delete-button'
-								onClick={() => deletePost(post._id)}
+								onClick={() => deleteHandler(post._id)}
 							>
 								X
 							</button>
