@@ -2,7 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from '../buttons/LoginButton';
 import SignUpButton from '../buttons/SignUpButton';
 import { ReactElement } from 'react';
-const blackListyLogo = require('../pictures/listyLogoBlack.svg');
+const blackListyLogo = require('../../assets/listyLogoBlack.svg');
 
 export const LoginPage = (): ReactElement => {
 	const { isLoading, isAuthenticated } = useAuth0();
