@@ -1,14 +1,17 @@
 import { ReactElement } from 'react';
 import LogoutButton from '../buttons/LogoutButton';
-const blackListyLogo = require('../../assets/listyLogoBlack.svg');
+import blackListyLogo from '../../assets/blackListyLogo.svg';
+import React from 'react';
 
-export const LogoNavbar = ({ isAuthenticated } : { isAuthenticated: boolean }): ReactElement => {
-
-	console.log('The photo for the navbar is: ', blackListyLogo)
-
+export const LogoNavbar = ({
+	isAuthenticated,
+}: {
+	isAuthenticated: boolean;
+}): ReactElement => {
 	return isAuthenticated ? (
 		<>
 			<img className='black-listy-nav-logo' src={blackListyLogo} />
+			{/* <Logo /> */}
 			<LogoutButton />
 		</>
 	) : (
