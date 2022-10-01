@@ -1,10 +1,10 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import { ReactElement } from 'react';
+import LogoutButton from '../buttons/LogoutButton';
 const blackListyLogo = require('../../assets/listyLogoBlack.svg');
-const LogoutButton = require('../buttons/LogoutButton');
 
-export const LogoNavbar = (): ReactElement => {
-	const { isAuthenticated } = useAuth0();
+export const LogoNavbar = ({ isAuthenticated } : { isAuthenticated: boolean }): ReactElement => {
+
+	console.log('The photo for the navbar is: ', blackListyLogo)
 
 	return isAuthenticated ? (
 		<>

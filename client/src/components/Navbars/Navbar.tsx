@@ -1,9 +1,7 @@
 import { ReactElement } from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
 
-export const Navbar = (): ReactElement => {
-	const { isAuthenticated } = useAuth0();
+export const Navbar = ({ isAuthenticated } : { isAuthenticated: boolean }): ReactElement => {
 
 	return isAuthenticated ? (
 		<nav className='nav'>

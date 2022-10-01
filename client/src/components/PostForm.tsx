@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { PostObj } from '../../customTypes';
 import { ObjectId } from 'bson';
-import {
-	fetchUserPosts,
-	onPostAdded,
-	deletePost,
-} from '../utils/PostFormServices';
+// import {
+// 	fetchUserPosts,
+// 	onPostAdded,
+// 	deletePost,
+// } from '../utils/PostFormServices';
 
 const FileBase64 = require('react-file-base64');
 
@@ -23,20 +23,20 @@ export const PostForm = () => {
 	};
 	const [postData, setPostData] = useState(initialState);
 
-	useEffect(() => {
-		fetchUserPosts().then((res) => setPosts(res));
-	}, []);
+	// useEffect(() => {
+	// 	fetchUserPosts().then((res) => setPosts(res));
+	// }, []);
 
 	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		onPostAdded(postData).then((res) => setPosts([...posts, res]));
+		// onPostAdded(postData).then((res) => setPosts([...posts, res]));
 		//clears out the fields after post
 		setPostData(initialState);
 	};
 
 	const deleteHandler = (id: ObjectId) => {
-		deletePost(id);
+		// deletePost(id);
 		setPosts(posts.filter((post) => post.id !== post._id));
 	};
 
