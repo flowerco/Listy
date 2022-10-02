@@ -14,8 +14,8 @@ export interface UserType {
   username: string;
   email: string;
   password: string;
-  followers: [];
-  following: [];
+  followers: string[];
+  following: string[];
 }
 
 export interface UserDoc extends UserType {

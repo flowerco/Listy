@@ -12,7 +12,7 @@ if (!process.env.PORT) {
   process.exit(1);
 }
 
-const PORT: number = parseInt(process.env.PORT as string, 10);
+const PORT: number = parseInt(process.env.PORT as string, 10) || 3030;
 
 const app = express();
 
@@ -30,15 +30,15 @@ app.use(router);
 //IGNORE
 // app.use('/api/auth', authRoute);
 
-const atlasUri = <string>process.env.ATLAS_URI;
+const MONGO_URI = <string>process.env.ATLAS_URI || 'mongodb://localhost/test';
 
-mongoose.connect(atlasUri, {
+mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 } as ConnectOptions);
 
 const connection = mongoose.connection;
-connection.once("open", () => console.log("Database connection successful🍃"));
+connection.once("open", () => console.log(`Database connection successful at ${MONGO_URI} 🍃`));
 
 //temporary, will go to the post route later
 // app.delete('/post/:id', async (req, res) => {
@@ -53,3 +53,5 @@ connection.once("open", () => console.log("Database connection successful🍃"))
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT} 🚀`);
 });
+
+export default app;

@@ -1,21 +1,14 @@
 import { User } from "../models/User";
-import { Post } from "../models/Post";
-import express from "express";
+import { Request, Response } from "express";
 import { UserDoc } from "../models/customTypes";
 
-//get the users posts with Authentication -- TODO: should probably go to posts route!
-export const getPosts = async (req: express.Request, res: express.Response) => {
-    const posts = await Post.find({ userId: req.body.userId });
-    res.status(200).json(posts);
-  };
 
-
-export const getAllUsers = async (req: express.Request, res: express.Response) => {
+export const getAllUsers = async (req: Request, res: Response) => {
   const users = await User.find();
   res.status(200).json(users);
 }
 
-export const getByNameOrId = async (req: express.Request, res: express.Response) => {
+export const getByNameOrId = async (req: Request, res: Response) => {
   const userId = req.body.userId;
   const username = req.body.username;
   console.log(`Getting user with name: ${userId} and id: ${username}`);
@@ -33,7 +26,7 @@ export const getByNameOrId = async (req: express.Request, res: express.Response)
   }
 };
 
-export const deleteUser = async (req: express.Request, res: express.Response) => {
+export const deleteUser = async (req: Request, res: Response) => {
   const userId = req.body.userId;
   console.log(`Deleting user with id: ${userId}`);
   try {
@@ -45,66 +38,30 @@ export const deleteUser = async (req: express.Request, res: express.Response) =>
   }
 };
 
-export const toggleFollowUser = async (req: express.Request, res: express.Response) => {
+export const toggleFollowUser = async (req: Request, res: Response) => {
   const targetUserId = req.body.userId;
   const currUserId = req.body.currUser;
   console.log(`User ${currUserId} wants to follow/unfollow ${targetUserId}`);
   try {
-    const user = await User.findById(targetUserId);
-    
+    const currUser = await User.findById(currUserId);
+    const targetUser = await User.findById(targetUserId);
+    // If we currently follow the target user, then remove them from the followed list
+    if (currUser !== targetUser) {
+      if (currUser?.followers.includes(targetUserId)) {
+        console.log('Removing follower from targetUserId');
+        await currUser.updateOne({ $pull: { followers: targetUserId } });
+        await targetUser?.updateOne({ $pull: { following: currUserId } });
+        res.sendStatus(200);
+      }
+      // If we don't follow them yet, then add them to the followed list. 
+      else {
+        console.log('Adding follower to targetUserId');
+        await currUser?.updateOne({ $push: { followers: targetUserId } });
+        await targetUser?.updateOne({ $push: { following: currUserId } });
+        res.sendStatus(200);
+      }
+    }
   } catch (err) {
     console.log('Error toggling follow status: ', err);
   }
 }
-
-
-/*
-//follow a user (with JWT) TODO: implement in frontend
-export const followUser = async (req: express.Request, res: express.Response) => {
-    //if it is not the same user
-    if (req.body.userId !== req.params.id) {
-      try {
-        const user = await User.findById(req.params.id);
-        const currUser = req.body.currUser;
-
-        if (!user!.followers.includes(req.body.userId)) {
-          await user!.updateOne({ $push: { followers: req.body.userId } });
-          await currUser.updateOne({ $push: { following: req.params.id } });
-          res.status(200).json("user followed");
-        } else {
-          res.status(403).json("you already follow this user");
-        }
-      } catch (error) {
-        res.status(500).json(error);
-      }
-    } else {
-      //if it is the same user
-      res.status(403).json("you can not follow yourself");
-    }
-  };
-
-//unfollow a user (with JWT) TODO: implement in frontend
-export const unfollowUser = async (req: express.Request, res: express.Response) => {
-    //if it is not the same user
-    if (req.body.userId !== req.params.id) {
-      try {
-        const user = await User.findById(req.params.id);
-        const currUser = req.body.currUser;
-
-        if (user!.followers.includes(req.body.userId)) {
-          await user.updateOne({ $pull: { followers: req.auth.userId } });
-          await currUser.updateOne({ $pull: { following: req.params.id } });
-          res.status(200).json("user unfollowed");
-        } else {
-          res.status(403).json("you do not follow this user");
-        }
-      } catch (error) {
-        res.status(500).json(error);
-      }
-    } else {
-      //if it is the same user
-      res.status(403).json("you can not unfollow yourself");
-    }
-  };
-
-  */

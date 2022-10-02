@@ -5,18 +5,23 @@ import { User } from "../models/User";
 import axios from "axios";
 // import { checkJwt, checkJwt2 } from "../routes/middleware";
 
+//get the users posts with Authentication -- TODO: should probably go to posts route!
+// export const getPosts = async (req:Request, res: Response) => {
+//   const posts = await Post.find({ userId: req.body.userId });
+//   res.status(200).json(posts);
+// };
+
 //ADD A POST (with jwt, recognizes which user created the post)
 export const createPost = async (req: Request, res: Response) => {
   // const userId = req.auth.payload.sub.split("|")[1]
   try {
     const post = new Post({
+      userId: req.body.userId,
       name: req.body.name,
       rating: req.body.rating,
       genre: req.body.genre,
-      userId: req.body.userId,
       image: req.body.image.base64,
     });
-    //TODO: add error handling
     await post.save();
     console.log(req.body);
     res.status(201).json(post);
