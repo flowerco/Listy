@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt';
 
 // //REGISTER
 export const register =  async (req: express.Request, res: express.Response) =>{
-    
+    console.log('Calling the register controller');
     try {
         //generate new password
         const salt = await bcrypt.genSalt(10);
@@ -15,8 +15,12 @@ export const register =  async (req: express.Request, res: express.Response) =>{
         const newUser = new User({
             username: req.body.username,
             email: req.body.email,
-            password: hashedPassword
+            password: hashedPassword,
+            followers: [],
+            following: []
         })
+
+        console.log('New User created: ', newUser);
 
         //save user and respond
         const user = await newUser.save(); 

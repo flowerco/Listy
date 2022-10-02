@@ -1,3 +1,4 @@
+/* 
 import { auth } from "express-oauth2-jwt-bearer";
 import * as User from "../models/User";
 import express, { NextFunction } from "express";
@@ -55,3 +56,5 @@ export const checkJwt2 = async (
   req.currUser = user;
   next();
 };
+
+*/

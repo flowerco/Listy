@@ -27,6 +27,7 @@ const PostSchema = new Schema<PostType>({
   },
   likes: {
     type: [String],
+    default: []
   },
 });
 

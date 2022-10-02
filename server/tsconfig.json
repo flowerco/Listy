@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "ES2017",
     "module": "commonjs",
+    "types": ["node", "jest"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,

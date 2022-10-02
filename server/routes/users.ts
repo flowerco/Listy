@@ -1,3 +1,4 @@
+/*
 import { Router } from "express";
 import * as User from "../models/User";
 import { checkJwt, checkJwt2 } from "./middleware";
@@ -102,3 +103,4 @@ router.put(
 );
 
 module.exports = router;
+*/
