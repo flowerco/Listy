@@ -10,11 +10,12 @@ export const LogoNavbar = ({
 }): ReactElement => {
 	return isAuthenticated ? (
 		<>
-			<img className='black-listy-nav-logo' src={blackListyLogo} />
-			{/* <Logo /> */}
+			{/* <img className='black-listy-nav-logo' src={blackListyLogo} /> */}
 			<LogoutButton />
 		</>
 	) : (
 		<></>
 	);
 };
+
+//for an HR: svg import not complaining but not compiling
