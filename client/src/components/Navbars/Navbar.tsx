@@ -7,7 +7,7 @@ export const Navbar = ({
 	isAuthenticated: boolean;
 }): ReactElement => {
 	return isAuthenticated ? (
-		<nav className='bg-black'>
+		<nav className='bg-blue-400 h-25 w-full'>
 			<CustomLink to='/mainfeed'>
 				<img
 					className='feed-logo'

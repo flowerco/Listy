@@ -88,16 +88,18 @@
 .nav-bottom {
 	display: flex;
 	position: fixed;
+	height: 6rem;
+	width: 100%;
 	bottom: 0;
 	left: 0;
 }
 
 /* this one controls the color of the bottom nav bar */
-.nav {
+/* .nav {
 	height: 10vh;
 	background: white;
 	width: 100vw;
-}
+} */
 
 .profile-page-div {
 	display: flex;
@@ -211,8 +213,10 @@
 .search-container {
 	display: flex;
 	flex-direction: column;
-	position: fixed;
+	position: relative;
+	justify-content: center;
 	align-items: center;
+	width: 100%
 }
 
 .search-bar {

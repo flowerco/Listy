@@ -17,10 +17,10 @@ export const createPost = async (req: Request, res: Response) => {
   try {
     const post = new Post({
       userId: req.body.userId,
-      name: req.body.name,
+      name: req.body.title,
       rating: req.body.rating,
       genre: req.body.genre,
-      image: req.body.image.base64,
+      image: req.body.image,
     });
     await post.save();
     console.log(req.body);
