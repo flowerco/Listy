@@ -1,18 +1,17 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from '../buttons/LoginButton';
 import SignUpButton from '../buttons/SignUpButton';
 import { ReactElement } from 'react';
-import React from 'react';
+import { useAppSelector } from '../../redux/hooks';
 const blackListyLogo = require('../../assets/listyLogoBlack.svg');
 
 export const LoginPage = (): ReactElement => {
-	const { isLoading, isAuthenticated } = useAuth0();
+	const authState = useAppSelector((state) => state.authReducer);
 
-	if (isLoading) {
-		return <div>Login Loading...</div>;
-	}
+	// if (isLoading) {
+	// 	return <div>Login Loading...</div>;
+	// }
 
-	return !isAuthenticated ? (
+	return !authState.isAuthenticated ? (
 		<>
 			<div className='login-page'>
 				<img className='black-listy-logo' src={blackListyLogo} />

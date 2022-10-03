@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 const initialState = {
-	isAuthenticated: false,
+	isAuthenticated: true,
 };
 
 const authReducer = (

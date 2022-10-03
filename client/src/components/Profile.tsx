@@ -1,18 +1,17 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { PostForm } from './PostForm';
 import { ReactElement, useState } from 'react';
+import { useAppSelector } from '../redux/hooks';
 
 const Profile = (): ReactElement => {
-	// const { user, isAuthenticated } = useAuth0();
-
+	const authState = useAppSelector((state) => state.authReducer);
 	const user = {
-		nickname:'Barry Smithberginssøn',
-		id:'6339ea6ea686a0ddcd561ffd',
-		picture: 'https://avatars.githubusercontent.com/u/66141971?v=4'
+		nickname: 'Barry Smithberginssøn',
+		id: '6339ea6ea686a0ddcd561ffd',
+		picture: 'https://avatars.githubusercontent.com/u/66141971?v=4',
 	};
-	const [isAuthenticated, setAuthenticated] = useState(true);
 
-	return isAuthenticated ? (
+	return authState.isAuthenticated ? (
 		<main className='profile-page-div'>
 			<article>
 				<section className='profile-nav-bar'>
