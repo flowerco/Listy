@@ -92,12 +92,12 @@
 	left: 0;
 }
 
-/* this one controls the color of the bottom nav bar */
+/* this one controls the color of the bottom nav bar
 .nav {
 	height: 10vh;
 	background: white;
 	width: 100vw;
-}
+} */
 
 .profile-page-div {
 	display: flex;
