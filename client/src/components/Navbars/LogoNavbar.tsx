@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import LogoutButton from '../buttons/LogoutButton';
-import blackListyLogo from '../../assets/blackListyLogo.svg';
+import blackListyLogo from '../../assets/listyLogoBlack.svg';
 import React from 'react';
 
 export const LogoNavbar = ({
@@ -10,12 +10,10 @@ export const LogoNavbar = ({
 }): ReactElement => {
 	return isAuthenticated ? (
 		<>
-			{/* <img className='black-listy-nav-logo' src={blackListyLogo} /> */}
+			<img className='black-listy-nav-logo' src={blackListyLogo} />
 			<LogoutButton />
 		</>
 	) : (
 		<></>
 	);
 };
-
-//for an HR: svg import not complaining but not compiling

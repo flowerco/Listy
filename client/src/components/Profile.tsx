@@ -1,9 +1,16 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { PostForm } from './PostForm';
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 
 const Profile = (): ReactElement => {
-	const { user, isAuthenticated } = useAuth0();
+	// const { user, isAuthenticated } = useAuth0();
+
+	const user = {
+		nickname:'Barry Smithberginssøn',
+		id:'6339ea6ea686a0ddcd561ffd',
+		picture: 'https://avatars.githubusercontent.com/u/66141971?v=4'
+	};
+	const [isAuthenticated, setAuthenticated] = useState(true);
 
 	return isAuthenticated ? (
 		<main className='profile-page-div'>
