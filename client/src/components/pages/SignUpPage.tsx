@@ -11,31 +11,15 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { createUser } from '../../utils/SignUpServices';
+import { Navigate, useNavigate } from 'react-router-dom';
 const blackListyLogo = require('../../assets/listyLogoBlack.svg');
-
-function Copyright(props: any) {
-	return (
-		<Typography
-			variant='body2'
-			color='text.secondary'
-			align='center'
-			{...props}
-		>
-			{'Copyright © '}
-			<Link color='inherit' href='https://mui.com/'>
-				Your Website
-			</Link>{' '}
-			{new Date().getFullYear()}
-			{'.'}
-		</Typography>
-	);
-}
 
 const theme = createTheme();
 
-export default function SignUp() {
+export default function SignUpPage() {
+	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -53,7 +37,9 @@ export default function SignUp() {
 		if (result instanceof Error) return alert('Oops! Something went wrong...');
 		console.log(result);
 		// dispatch user data to necesasry app state
-		dispatch({ type: 'LOGIN' });
+
+		dispatch({ type: 'LOGIN', payload: result._id });
+		navigate('/mainfeed');
 	};
 
 	return (
@@ -68,9 +54,6 @@ export default function SignUp() {
 						alignItems: 'center',
 					}}
 				>
-					<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-						<img className='black-listy-logo' src={blackListyLogo} />
-					</Avatar>
 					<Typography component='h1' variant='h5'>
 						Sign up
 					</Typography>
@@ -78,7 +61,16 @@ export default function SignUp() {
 						component='form'
 						noValidate
 						onSubmit={handleSubmit}
-						sx={{ mt: 3 }}
+						sx={{
+							display: 'flex',
+							mt: 2,
+							alignItems: 'center',
+							flexDirection: 'column',
+							margin: 'auto',
+							justifyContent: 'center',
+							position: 'static',
+							padding: '0 3rem',
+						}}
 					>
 						<Grid container spacing={2}>
 							<Grid item xs={12} sm={6}>
@@ -123,14 +115,6 @@ export default function SignUp() {
 									autoComplete='new-password'
 								/>
 							</Grid>
-							<Grid item xs={12}>
-								<FormControlLabel
-									control={
-										<Checkbox value='allowExtraEmails' color='primary' />
-									}
-									label='I want to receive inspiration, marketing promotions and updates via email.'
-								/>
-							</Grid>
 						</Grid>
 						<Button
 							type='submit'
@@ -140,7 +124,14 @@ export default function SignUp() {
 						>
 							Sign Up
 						</Button>
-						<Grid container justifyContent='flex-end'>
+						<Grid
+							container
+							sx={{
+								display: 'flex',
+								flexDirection: 'column',
+								alignItems: 'center',
+							}}
+						>
 							<Grid item>
 								<Link href='#' variant='body2'>
 									Already have an account? Sign in
@@ -149,7 +140,6 @@ export default function SignUp() {
 						</Grid>
 					</Box>
 				</Box>
-				<Copyright sx={{ mt: 5 }} />
 			</Container>
 		</ThemeProvider>
 	);
