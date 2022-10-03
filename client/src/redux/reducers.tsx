@@ -1,27 +1,27 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
 const initialState = {
-	isAuthenticated: true,
+  isAuthenticated: true,
 };
 
 const authReducer = (
-	state = initialState,
-	action: {
-		type: any;
-	}
+  state = initialState,
+  action: {
+    type: any;
+  }
 ) => {
-	switch (action.type) {
-		case 'LOGIN':
-			return { ...state, isAuthenticated: true };
-		case 'LOGOUT':
-			return {
-				...state,
-				isAuthenticated: false,
-			};
+  switch (action.type) {
+    case "LOGIN":
+      return { ...state, isAuthenticated: true };
+    case "LOGOUT":
+      return {
+        ...state,
+        isAuthenticated: false,
+      };
 
-		default:
-			return state;
-	}
+    default:
+      return state;
+  }
 };
 
 export const reducers = combineReducers({ authReducer });
