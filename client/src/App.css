@@ -1,242 +1,235 @@
-*{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
-
-.Site{
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+.Site {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
 }
 
-.login-page{
-  display: flex;
-  position: fixed;
-  background: white;
-  border-radius: 5px;
-  justify-content: center;
-  align-items:center;
-  height: 60vh;
-  width: 80vw;
-  box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  0 12.5px 10px rgba(0, 0, 0, 0.06),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  0 100px 80px rgba(0, 0, 0, 0.12);
-  left: 10%;
-  bottom: 20%;
+.login-page {
+	display: flex;
+	position: fixed;
+	background: white;
+	border-radius: 5px;
+	justify-content: center;
+	align-items: center;
+	height: 60vh;
+	width: 80vw;
+	box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+		0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+		0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+		0 100px 80px rgba(0, 0, 0, 0.12);
+	left: 10%;
+	bottom: 20%;
 }
 
-.login-button{
-  display: flex;
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  border: 0;
-  background-color: #6b9080;
-  border-radius: 10px;
-  color: white;
-  width: 60%;
-  height: 6vh;
-  bottom: 40%;
-  font-weight: bold;
+.login-button {
+	display: flex;
+	position: fixed;
+	justify-content: center;
+	align-items: center;
+	border: 0;
+	background-color: #6b9080;
+	border-radius: 10px;
+	color: white;
+	width: 60%;
+	height: 6vh;
+	bottom: 40%;
+	font-weight: bold;
 }
 
-.signup-button{
-  display: flex;
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  border: 0;
-  background-color: #31433b;
-  border-radius: 10px;
-  color: white;
-  width: 60%;
-  height: 6vh;
-  bottom: 30%;
-  font-weight: bold;
+.signup-button {
+	display: flex;
+	position: fixed;
+	justify-content: center;
+	align-items: center;
+	border: 0;
+	background-color: #31433b;
+	border-radius: 10px;
+	color: white;
+	width: 60%;
+	height: 6vh;
+	bottom: 30%;
+	font-weight: bold;
 }
 
-.black-listy-logo{
-  display: flex;
-  position: fixed;
-  bottom: 50%;
-  height: 10vh;
+.black-listy-logo {
+	display: flex;
+	position: fixed;
+	bottom: 50%;
+	height: 10vh;
 }
 
-.black-listy-nav-logo{
-  display: flex;
-  position: fixed;
-  bottom: 90%;
-  height: 10vh;
+.black-listy-nav-logo {
+	display: flex;
+	position: fixed;
+	bottom: 90%;
+	height: 10vh;
 }
 
-.main-content{
-  display: flex;
-  position: fixed;
-  height: 80vh;
-  width: 100vw;
-  background: white;
+.main-content {
+	display: flex;
+	position: fixed;
+	height: 80vh;
+	width: 100vw;
+	background: white;
 }
 
-.nav-top{
-  height: 10vh;
-  background: white;
-  position: sticky;
+.nav-top {
+	height: 10vh;
+	background: white;
+	position: sticky;
 }
 
-.nav-bottom{
-  display: flex;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+.nav-bottom {
+	display: flex;
+	position: fixed;
+	bottom: 0;
+	left: 0;
 }
-
 
 /* this one controls the color of the bottom nav bar */
-.nav{
-  height: 10vh;
-  background: white;
-  width: 100vw;
+.nav {
+	height: 10vh;
+	background: white;
+	width: 100vw;
 }
 
-.profile-page-div{
-  display: flex;
-  position: fixed;
-  justify-content: center;
-  align-items:flex-start;
-  min-height: 80vh;
-  width: 100vw;
-  bottom: 10%;
+.profile-page-div {
+	display: flex;
+	position: fixed;
+	justify-content: center;
+	align-items: flex-start;
+	min-height: 80vh;
+	width: 100vw;
+	bottom: 10%;
 }
 
-.profile-info{
-  display: flex;
-  position: relative;
+.profile-info {
+	display: flex;
+	position: relative;
 }
 
-.profile-logo{
-  display: flex;
-  position: fixed;
-  bottom: 2%;
-  left: 45%;
-  height: 7vh;
-  width: 7vh;
+.profile-logo {
+	display: flex;
+	position: fixed;
+	bottom: 2%;
+	left: 45%;
+	height: 7vh;
+	width: 7vh;
 }
 
-.feed-logo{
-  display: flex;
-  position: fixed;
-  bottom: 2%;
-  left: 6%;
-  height: 7vh;
-  width: 7vh;
+.feed-logo {
+	display: flex;
+	position: fixed;
+	bottom: 2%;
+	left: 6%;
+	height: 7vh;
+	width: 7vh;
 }
 
-.add-logo{
-  display: flex;
-  position: fixed;
-  right: 2%;
-  height: 5vh;
-  width: 5vh;
-  top: 18%;
+.add-logo {
+	display: flex;
+	position: fixed;
+	right: 2%;
+	height: 5vh;
+	width: 5vh;
+	top: 18%;
 }
 
-.search-logo{
-  display: flex;
-  position: fixed;
-  bottom: 2%;
-  right: 6%;
-  height: 7vh;
-  width: 7vh;
+.search-logo {
+	display: flex;
+	position: fixed;
+	bottom: 2%;
+	right: 6%;
+	height: 7vh;
+	width: 7vh;
 }
 
-.logo-navbar-div{
-  height: 10vh;
-  position: sticky;
-  left: 5%;
+.logo-navbar-div {
+	height: 10vh;
+	position: sticky;
+	left: 5%;
 }
 
-.profile-nav-bar{
-  display: flex;
-  position: fixed;
-  height: 13vh;
-  width: 100vw;
-  top: 12%;
-  background: white;
-  left: 0;
+.profile-nav-bar {
+	display: flex;
+	position: fixed;
+	height: 13vh;
+	width: 100vw;
+	top: 12%;
+	background: white;
+	left: 0;
 }
 
-.friends-button{
-  border: 0;
-  border-radius: 10px;
+.friends-button {
+	border: 0;
+	border-radius: 10px;
 }
 
-.friends-icon{
-  display: flex;
-  position: fixed;
-  bottom: 83%;
-  right: 2%;
-  height: 5vh;
-  width: 5vh;
+.friends-icon {
+	display: flex;
+	position: fixed;
+	bottom: 83%;
+	right: 2%;
+	height: 5vh;
+	width: 5vh;
 }
 
-
-
-.logout-button{
-  display: flex;
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  border: 0;
-  background-color: #31433b;
-  border-radius: 10px;
-  color: white;
-  width: 30%;
-  height: 6vh;
-  right: 5%;
-  top: 2%;
-  font-weight: bold;
+.logout-button {
+	display: flex;
+	position: fixed;
+	justify-content: center;
+	align-items: center;
+	border: 0;
+	background-color: #31433b;
+	border-radius: 10px;
+	color: white;
+	width: 30%;
+	height: 6vh;
+	right: 5%;
+	top: 2%;
+	font-weight: bold;
 }
 
-.profile-pic{
-  border-radius: 50%;
-  margin-left: 5px;
-  height: 10vh;
+.profile-pic {
+	border-radius: 50%;
+	margin-left: 5px;
+	height: 10vh;
 }
 
-.profile-name{
-  margin-left: 10px;
-  margin-top: 5px;
-  font-size: clamp(1vw, 8vw, 25px)
+.profile-name {
+	margin-left: 10px;
+	margin-top: 5px;
+	font-size: clamp(1vw, 8vw, 25px);
 }
 
-.search-container{
-  display: flex; 
-  flex-direction: column;
-  position: fixed;
-  align-items: center;
+.search-container {
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	align-items: center;
 }
 
-.search-bar{
-  border: none;
-  height: 5vh;
-  text-align: center;
-  border-radius: 10px;
-  margin-top: 10px;
+.search-bar {
+	border: none;
+	height: 5vh;
+	text-align: center;
+	border-radius: 10px;
+	margin-top: 10px;
 }
 
-.mainfeed-title{
-  position: fixed;
-  left: 25%;
-  top: 15%;
-  font-size: 5vh;
+.mainfeed-title {
+	position: fixed;
+	left: 25%;
+	top: 15%;
+	font-size: 5vh;
 }
 
-.hello{
-  font-size: 5vh;
+.hello {
+	font-size: 5vh;
 }
