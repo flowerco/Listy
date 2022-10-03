@@ -7,6 +7,7 @@ import { Navbar } from "./components/Navbars/Navbar";
 import { LogoNavbar } from "./components/Navbars/LogoNavbar";
 import { MainFeed } from "./components/pages/MainFeed";
 import { SearchPage } from "./components/pages/SearchPage";
+import SignUp from "./components/pages/SignUpPage";
 
 function App(): ReactElement {
   return (
@@ -18,7 +19,7 @@ function App(): ReactElement {
       <section className="main-content">
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element="" />
+          <Route path="/register" element={<SignUp />} />
           <Route path="/profile/:username" element="" />
           <Route path="/mainfeed" element={<MainFeed />} />
           <Route path="/search" element={<SearchPage />} />
