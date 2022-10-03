@@ -1,17 +1,23 @@
 import { ObjectId } from 'bson';
 
 export type PostObj = {
-	id: ObjectId;
-	_id: ObjectId;
+	id: string;
+	userId: string;
 	image: string;
-	name: string;
+	title: string;
 	rating: string;
 	genre: string;
 };
 
 export type PostData = {
-	name: string;
+	title: string;
 	rating: string;
 	genre: string;
-	image: { base64: string };
+	image: string;
 };
+
+export type Movie = {
+	title: string,
+	poster_path: string,
+	genre: string
+}

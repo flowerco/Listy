@@ -20,7 +20,7 @@ export const PostForm = () => {
 		name: '',
 		rating: '',
 		genre: '',
-		image: { base64: '' },
+		image: '',
 	};
 	const [postData, setPostData] = useState(initialState);
 
@@ -36,9 +36,9 @@ export const PostForm = () => {
 		setPostData(initialState);
 	};
 
-	const deleteHandler = (id: ObjectId) => {
+	const deleteHandler = (id: string) => {
 		// deletePost(id);
-		setPosts(posts.filter((post) => post.id !== post._id));
+		setPosts(posts.filter((post) => post.id !== id));
 	};
 
 	return (
@@ -68,7 +68,7 @@ export const PostForm = () => {
 						<form onSubmit={onSubmit} encType='multipart/form-data'>
 							<div className='all-inputs'>
 								<div className='upload'>
-									<i className='material-icons'>add_photo_alternate</i>
+									{/* <i className='material-icons'>add_photo_alternate</i>
 									<FileBase64
 										type='file'
 										multiple={false}
@@ -76,7 +76,7 @@ export const PostForm = () => {
 											(initialState.image = { base64 })
 										}
 										value={initialState.image}
-									/>
+									/> */}
 								</div>
 
 								<div className='name-input-div'>
@@ -128,15 +128,15 @@ export const PostForm = () => {
 
 			<section className='posts-container'>
 				{posts.map((post) => (
-					<div className='image-and-post' key={post._id.toString()}>
+					<div className='image-and-post' key={post.id.toString()}>
 						<img className='post-image' src={post.image} />
 						<section className='post-container'>
-							<h1 className='post-name'>{post.name}</h1>
+							<h1 className='post-name'>{post.title}</h1>
 							<p className='post-rating'>{post.rating}</p>
 							<p className='post-genre'>{post.genre}</p>
 							<button
 								className='delete-button'
-								onClick={() => deleteHandler(post._id)}
+								onClick={() => deleteHandler(post.id)}
 							>
 								X
 							</button>

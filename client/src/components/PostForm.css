@@ -28,8 +28,8 @@ body.active-modal {
         0 22.3px 17.9px rgba(0, 0, 0, 0.072),
         0 41.8px 33.4px rgba(0, 0, 0, 0.086),
         0 100px 80px rgba(0, 0, 0, 0.12);
-    left: 10%;
-    bottom: 20%;
+    /* left: 10%; */
+    /* bottom: 20%; */
     z-index: 105;
 }
 
@@ -95,7 +95,7 @@ label {
 
 .close-modal {
     display: flex;
-    position: fixed;
+    /* position: fixed; */
     justify-content: center;
     align-items: center;
     border: 0;
@@ -111,7 +111,7 @@ label {
 
 .post-modal {
     display: flex;
-    position: fixed;
+    /* position: fixed; */
     justify-content: center;
     align-items: center;
     border: 0;

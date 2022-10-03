@@ -19,7 +19,8 @@ import { ObjectId } from 'bson';
 // 	}
 // };
 
-// export const onPostAdded = async (postData: PostData) => {
+export const onPostAdded = async (postData: PostObj) => {
+  try {
 // 	let accessToken = '';
 // 	const opts = {
 // 		audience: 'http://localhost:3030',
@@ -34,18 +35,22 @@ import { ObjectId } from 'bson';
 // 		accessToken = await getAccessTokenWithPopup(opts);
 // 	}
 
-// 	const newPost = await fetch('http://localhost:3030/api/posts', {
-// 		method: 'POST',
-// 		headers: {
-// 			'Content-type': 'application/json',
-// 			Authorization: `Bearer ${accessToken}`,
-// 		},
-// 		body: JSON.stringify(postData),
-// 	});
-// 	// TODO: add error handling
-// 	const res = await newPost.json();
-// 	return res;
-// };
+    const newPost = await fetch('http://localhost:3030/api/posts', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        // Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(postData),
+    });
+
+    // TODO: add error handling
+    const res = await newPost.json();
+    return res;
+  } catch (err) {
+    console.log('Error in newPost service: ', err);
+  }
+};
 
 // export const deletePost = async (id: ObjectId) => {
 // 	const data = await fetch(
