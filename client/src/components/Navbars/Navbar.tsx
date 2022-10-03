@@ -1,13 +1,11 @@
 import { ReactElement } from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+import { useAppSelector } from '../../redux/hooks';
 
-export const Navbar = ({
-	isAuthenticated,
-}: {
-	isAuthenticated: boolean;
-}): ReactElement => {
+export const Navbar = (): ReactElement => {
+	const isAuthenticated = useAppSelector((state) => state.authReducer);
 	return isAuthenticated ? (
-		<nav className='bg-black'>
+		<nav className='text-white bg-black'>
 			<CustomLink to='/mainfeed'>
 				<img
 					className='feed-logo'
