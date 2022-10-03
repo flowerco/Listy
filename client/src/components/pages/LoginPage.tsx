@@ -10,14 +10,17 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
+import { useAppDispatch } from '../../redux/hooks';
 import SignUpButton from '../buttons/SignUpButton';
 const blackListyLogo = require('../../assets/listyLogoBlack.svg');
 
 const theme = createTheme();
 
 export default function LoginPage() {
+	const dispatch = useAppDispatch();
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
+
 		const data = new FormData(event.currentTarget);
 		console.log({
 			email: data.get('email'),

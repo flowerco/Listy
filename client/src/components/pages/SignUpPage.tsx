@@ -11,31 +11,15 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { createUser } from '../../utils/SignUpServices';
+import { Navigate, useNavigate } from 'react-router-dom';
 const blackListyLogo = require('../../assets/listyLogoBlack.svg');
-
-function Copyright(props: any) {
-	return (
-		<Typography
-			variant='body2'
-			color='text.secondary'
-			align='center'
-			{...props}
-		>
-			{'Copyright © '}
-			<Link color='inherit' href='https://mui.com/'>
-				Your Website
-			</Link>{' '}
-			{new Date().getFullYear()}
-			{'.'}
-		</Typography>
-	);
-}
 
 const theme = createTheme();
 
-export default function SignUp() {
+export default function SignUpPage() {
+	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -53,7 +37,9 @@ export default function SignUp() {
 		if (result instanceof Error) return alert('Oops! Something went wrong...');
 		console.log(result);
 		// dispatch user data to necesasry app state
-		dispatch({ type: 'LOGIN' });
+
+		dispatch({ type: 'LOGIN', payload: result._id });
+		navigate('/mainfeed');
 	};
 
 	return (

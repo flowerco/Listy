@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import { User } from '../Models/User';
+import { User } from '../models/User';
 import { UserType } from '../models/customTypes';
 import bcrypt from 'bcrypt';
 
