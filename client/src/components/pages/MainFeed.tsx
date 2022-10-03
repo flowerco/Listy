@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 import { useState, useEffect } from 'react';
 import { fetchPosts } from '../../utils/MainFeedServices';
 import { PostObj } from '../../../customTypes';
+import React from 'react';
 
 export const MainFeed = (): ReactElement => {
 	const [posts, setPosts] = useState([] as PostObj[]);

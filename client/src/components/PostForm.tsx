@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { PostObj } from '../../customTypes';
 import { ObjectId } from 'bson';
+import React from 'react';
 // import {
 // 	fetchUserPosts,
 // 	onPostAdded,

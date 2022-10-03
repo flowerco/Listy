@@ -1,10 +1,13 @@
 import { ReactElement } from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 
-export const Navbar = ({ isAuthenticated } : { isAuthenticated: boolean }): ReactElement => {
-
+export const Navbar = ({
+	isAuthenticated,
+}: {
+	isAuthenticated: boolean;
+}): ReactElement => {
 	return isAuthenticated ? (
-		<nav className='nav'>
+		<nav className='bg-black'>
 			<CustomLink to='/mainfeed'>
 				<img
 					className='feed-logo'
