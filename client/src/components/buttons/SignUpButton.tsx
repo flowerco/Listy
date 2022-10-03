@@ -3,18 +3,11 @@ import { ReactElement } from 'react';
 import { useAppSelector } from '../../redux/hooks';
 
 const SignUpButton = (): ReactElement => {
-	const { loginWithRedirect, isAuthenticated } = useAuth0();
-
 	const authState = useAppSelector((state) => state.authReducer);
+	const signupHandler = () => {};
+
 	return !authState.isAuthenticated ? (
-		<button
-			className='signup-button'
-			onClick={() =>
-				loginWithRedirect({
-					screen_hint: 'signup',
-				})
-			}
-		>
+		<button className='signup-button' onClick={() => signupHandler()}>
 			Sign Up
 		</button>
 	) : (
