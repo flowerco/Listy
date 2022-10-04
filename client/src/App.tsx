@@ -23,7 +23,7 @@ function App(): ReactElement {
 					<Route path='/mainfeed' element={<MainFeed />} />
 					<Route path='/search' element={<SearchPage />} />
 					<Route path='/profile' element={<Profile />} />
-					<Route path='/' element={<Navigate replace to='/mainfeed' />} />
+					<Route path='/' element={<Navigate replace to='/login' />} />
 				</Routes>
 			</section>
 

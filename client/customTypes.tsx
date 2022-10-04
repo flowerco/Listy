@@ -17,7 +17,7 @@ export type PostData = {
 };
 
 export type Movie = {
-	title: string,
-	poster_path: string,
-	genre: string
-}
+	title: string;
+	poster_path: string;
+	genre: string;
+};

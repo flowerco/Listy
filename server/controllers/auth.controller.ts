@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 import { User } from '../models/User';
-import { UserType } from '../models/customTypes';
+import { UserType, SafeUserType } from '../models/customTypes';
 import bcrypt from 'bcrypt';
 
 // //REGISTER
@@ -34,7 +34,9 @@ export const register = async (req: express.Request, res: express.Response) => {
 // //LOGIN
 export const login = async (req: express.Request, res: express.Response) => {
 	try {
-		const user = (await User.findOne({ email: req.body.email })) as UserType;
+		const user = (await User.findOne({
+			email: req.body.email,
+		})) as UserType;
 		!user && res.status(404).send('user not found');
 
 		const validPassword = await bcrypt.compare(
@@ -43,7 +45,15 @@ export const login = async (req: express.Request, res: express.Response) => {
 		);
 		!validPassword && res.status(400).json('wrong password');
 
-		res.status(200).json(user);
+		const safeUser: SafeUserType = {
+			_id: user._id,
+			picture: user.picture,
+			username: user.username,
+			followers: user.followers,
+			following: user.following,
+		};
+
+		res.status(200).json(safeUser);
 	} catch (error) {
 		// console.log(error)
 		res.status(500).json(error);

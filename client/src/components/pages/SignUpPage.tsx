@@ -34,7 +34,7 @@ export default function SignUpPage() {
 		// call async API service
 		const result = await createUser(data.get('email'), data.get('password'));
 		// handle error case
-		if (result instanceof Error) return alert('Oops! Something went wrong...');
+		if (result instanceof Error) return alert('Problem with sign up.');
 		console.log(result);
 		// dispatch user data to necesasry app state
 

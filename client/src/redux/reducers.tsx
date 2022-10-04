@@ -4,7 +4,6 @@ const initialState = {
 	isAuthenticated: true,
 	userId: '',
 };
-
 const authReducer = (
 	state = initialState,
 	action: {
@@ -14,7 +13,7 @@ const authReducer = (
 ) => {
 	switch (action.type) {
 		case 'LOGIN':
-			const newstate = { userId: action.payload, isAuthenticated: true };
+			const newstate = { isAuthenticated: true, userId: action.payload };
 			console.log(newstate);
 			return newstate;
 		case 'LOGOUT':

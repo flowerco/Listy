@@ -16,6 +16,15 @@ export interface UserType {
 	password: string;
 	followers: string[];
 	following: string[];
+	picture: string;
+}
+
+export interface SafeUserType {
+	_id: string;
+	username: string;
+	followers: string[];
+	following: string[];
+	picture: string;
 }
 
 export interface UserDoc extends UserType {

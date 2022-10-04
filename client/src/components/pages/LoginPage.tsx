@@ -11,14 +11,18 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import { useAppDispatch } from '../../redux/hooks';
+import { useNavigate } from 'react-router-dom';
 import SignUpButton from '../buttons/SignUpButton';
+import { verifyUser } from '../../utils/LoginServices';
+import { verify } from 'crypto';
 const blackListyLogo = require('../../assets/listyLogoBlack.svg');
 
 const theme = createTheme();
 
 export default function LoginPage() {
+	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
 		const data = new FormData(event.currentTarget);
@@ -26,6 +30,12 @@ export default function LoginPage() {
 			email: data.get('email'),
 			password: data.get('password'),
 		});
+
+		const result = await verifyUser(data.get('email'), data.get('password'));
+		if (result instanceof Error) return alert('Problem with log in.');
+		console.log(result._id);
+		dispatch({ type: 'LOGIN', payload: result._id });
+		navigate('/mainfeed');
 	};
 
 	return (
