@@ -2,6 +2,7 @@ import express, { Router } from 'express';
 import { User } from '../models/User';
 import { UserType } from '../models/customTypes';
 import bcrypt from 'bcrypt';
+import { createSession } from '../session/stateless';
 
 // //REGISTER
 export const register = async (req: express.Request, res: express.Response) => {
@@ -43,6 +44,8 @@ export const login = async (req: express.Request, res: express.Response) => {
 		);
 		!validPassword && res.status(400).json('wrong password');
 
+        const sessionJwt = createSession(user._id);
+        
 		res.status(200).json(user);
 	} catch (error) {
 		// console.log(error)

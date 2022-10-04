@@ -41,17 +41,22 @@ export const SearchPage = (): ReactElement => {
     });
   };
 
-  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    const newPost = await onPostAdded({ userId: "6339ea6ea686a0ddcd561ffd", id:"", ...formState });
-    // TODO: Update state in redux
-    // dispatch({ type:'ADD_POST', payload: newPost });
+	const closePopup = () => {
     setPopupActive(false);
     setFormState(initialState);
+		setSearchList([]);
+	}
+
+  const onSubmit = async (rating:string, event: React.MouseEvent<HTMLButtonElement>) => {
+    const newPost = await onPostAdded({ ...formState, userId: "6339ea6ea686a0ddcd561ffd", id:"", rating});
+    // TODO: Update state in redux
+    // dispatch({ type:'ADD_POST', payload: newPost });
+		closePopup();
   };
 
 	return authState.isAuthenticated ? (
 		<main className='login-page'>
-			{ popupActive ? <MovieCard movie={movie} popupCallback={setPopupActive} submitCallback={onSubmit}/> : <></>}
+			{ popupActive ? <MovieCard movie={movie} popupCallback={closePopup} submitCallback={onSubmit}/> : <></>}
 			<section className='search-container'>
 				<label className='my-4'>Search for Movies/TV:</label>
 				<TextField variant="outlined" label="Start your adventure..." className='search-bar' type='text' onChange={handleFormChange} value={formState.title} />
