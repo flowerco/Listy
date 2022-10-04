@@ -12,7 +12,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import { useAppDispatch } from '../../redux/hooks';
 import { useNavigate } from 'react-router-dom';
-import SignUpButton from '../buttons/SignUpButton';
 import { verifyUser } from '../../utils/LoginServices';
 import { verify } from 'crypto';
 const blackListyLogo = require('../../assets/listyLogoBlack.svg');
@@ -109,13 +108,9 @@ export default function LoginPage() {
 							alignItems: 'center',
 						}}
 					>
-						<Grid item xs>
-							<Link href='#' variant='body2'>
-								Forgot password?
-							</Link>
-						</Grid>
+						<Grid item xs></Grid>
 						<Grid item>
-							<Link href='#' variant='body2'>
+							<Link href='/register' variant='body2'>
 								{"Don't have an account? Sign Up"}
 							</Link>
 						</Grid>
@@ -126,25 +121,3 @@ export default function LoginPage() {
 		</ThemeProvider>
 	);
 }
-// import LoginButton from '../buttons/LoginButton';
-// import SignUpButton from '../buttons/SignUpButton';
-// import { ReactElement } from 'react';
-// import { useAppSelector } from '../../redux/hooks';
-// const blackListyLogo = require("../../assets/listyLogoBlack.svg");
-
-// export const LoginPage = (): ReactElement => {
-// 	const authState = useAppSelector((state) => state.authReducer);
-
-// 	return !authState.isAuthenticated ? (
-// 		<>
-// 			<div className='login-page'>
-// 				<img className='black-listy-logo' src={blackListyLogo} />
-
-// 				<LoginButton />
-// 				<SignUpButton />
-// 			</div>
-// 		</>
-// 	) : (
-// 		<></>
-// 	);
-// };

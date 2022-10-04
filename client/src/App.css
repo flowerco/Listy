@@ -1,15 +1,15 @@
-/* * {
+* {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-} */
+}
 
 .Site {
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
 }
-
+/* 
 .login-page {
 	display: flex;
 	position: fixed;
@@ -25,7 +25,7 @@
 		0 100px 80px rgba(0, 0, 0, 0.12);
 	left: 10%;
 	bottom: 20%;
-}
+} */
 
 .login-button {
 	display: flex;
@@ -71,22 +71,28 @@
 	height: 10vh;
 }
 
-/* .main-content {
+.main-content {
 	display: flex;
 	position: fixed;
 	height: 80vh;
 	width: 100vw;
 	background: white;
-} */
+}
 
-/* .nav-bottom {
+.nav-top {
+	height: 10vh;
+	background: white;
+	position: sticky;
+}
+
+.nav-bottom {
 	display: flex;
 	position: fixed;
 	height: 6rem;
 	width: 100%;
 	bottom: 0;
 	left: 0;
-} */
+}
 
 /* this one controls the color of the bottom nav bar
 .nav {
@@ -176,7 +182,7 @@
 	width: 5vh;
 }
 
-.logout-button {
+/* .logout-button {
 	display: flex;
 	position: fixed;
 	justify-content: center;
@@ -190,7 +196,7 @@
 	right: 5%;
 	top: 2%;
 	font-weight: bold;
-}
+} */
 
 .profile-pic {
 	border-radius: 50%;
@@ -220,4 +226,15 @@
 	text-align: center;
 	border-radius: '10px';
 	margin: '1rem' '0';
+}
+
+.mainfeed-title {
+	position: fixed;
+	left: 25%;
+	top: 15%;
+	font-size: 5vh;
+}
+
+.hello {
+	font-size: 5vh;
 }

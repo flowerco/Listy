@@ -4,8 +4,7 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				brightRed: 'hsl(12,88%,59%)',
-				darkBlue: 'hsl(228,39%,23%)',
+				'milita-green': '#31433b',
 			},
 		},
 		screens: {

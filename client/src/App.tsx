@@ -12,9 +12,7 @@ import SignUpPage from './components/pages/SignUpPage';
 function App(): ReactElement {
 	return (
 		<BrowserRouter>
-			<nav className='h-[10vh] bg-slate-500 sticky'>
-				<LogoNavbar />
-			</nav>
+			<LogoNavbar />
 
 			<section className='flex fixed h-[80vh] w-full bg-teal-600'>
 				<Routes>
