@@ -47,6 +47,8 @@ export const login = async (req: express.Request, res: express.Response) => {
 		!validPassword && res.status(400).json('wrong password');
 
         const sessionJwt = createSession(user._id);
+        console.log('New session JWT created: ', sessionJwt);
+        res.cookie('sessionJwt', sessionJwt);
         
 		const safeUser: SafeUserType = {
 			_id: user._id,
@@ -56,7 +58,7 @@ export const login = async (req: express.Request, res: express.Response) => {
 			following: user.following,
 		};
 
-		res.status(200).json(safeUser);
+		res.status(200).json(sessionJwt);
 	} catch (error) {
 		// console.log(error)
 		res.status(500).json(error);

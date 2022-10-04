@@ -1,10 +1,12 @@
-import express from 'express';
+import express, { Request } from 'express';
 import mongoose, { ConnectOptions } from 'mongoose';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
 import * as dotenv from 'dotenv';
 import router from './router';
+import { expressjwt as jwt } from 'express-jwt';
 
 dotenv.config();
 if (!process.env.PORT) {
@@ -17,10 +19,32 @@ const PORT: number = parseInt(process.env.PORT as string, 10) || 3030;
 const app = express();
 
 //middleware
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 app.use(helmet());
 app.use(morgan('common'));
 app.use(express.json());
+app.use(cookieParser());
+
+// Middleware to use/decode jwt
+app.use((req, res, next) => {
+  const authHeader = req.cookies.sessionJwt;
+  if (authHeader) {
+    req.headers.authorization = `Bearer ${authHeader}`;
+  }
+  next();
+});
+
+// app.use(
+//   jwt({
+//     secret: process.env.JWT_SECRET as string,
+//     algorithms: ["HS256"],
+//     getToken: (req: Request) => req.cookies.sessionJwt
+//   }).unless({
+//     path:[
+//       '/login'
+//     ]
+//   })
+// );
 
 //address for rest API
 // app.use("/api/users", userRoute);
