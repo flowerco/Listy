@@ -12,11 +12,11 @@ import SignUpPage from './components/pages/SignUpPage';
 function App(): ReactElement {
 	return (
 		<BrowserRouter>
-			<nav className='nav-top'>
+			<nav className='h-[10vh] bg-slate-500 sticky'>
 				<LogoNavbar />
 			</nav>
 
-			<section className='main-content'>
+			<section className='flex fixed h-[80vh] w-full bg-teal-600'>
 				<Routes>
 					<Route path='/login' element={<LoginPage />} />
 					<Route path='/register' element={<SignUpPage />} />
@@ -27,7 +27,7 @@ function App(): ReactElement {
 				</Routes>
 			</section>
 
-			<footer className='nav-bottom'>
+			<footer className='flex bg-blue-400 h-[10vh] w-full fixed bottom-0'>
 				<Navbar />
 			</footer>
 		</BrowserRouter>
