@@ -1,10 +1,11 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { PostForm } from './PostForm';
 import { ReactElement, useState } from 'react';
 import { useAppSelector } from '../redux/hooks';
 
 const Profile = (): ReactElement => {
 	const authState = useAppSelector((state) => state.authReducer);
+
+	// Temporary hardcoded user data
 	const user = {
 		nickname: 'Barry Smithberginssøn',
 		id: '6339ea6ea686a0ddcd561ffd',
@@ -24,9 +25,6 @@ const Profile = (): ReactElement => {
 						/>
 					</button>
 				</section>
-				<div className='posts-container'>
-					<PostForm />
-				</div>
 			</article>
 		</main>
 	) : (

@@ -4,7 +4,7 @@ import { Movie } from "../../../customTypes";
 const SearchList = ({ media, callback } : { media: Movie[], callback: (movie: Movie) => void }) => {
 
   return (
-    <div className="mt-4 flex h-44 w-11/12 overflow-auto">
+    <div className="mt-8 flex h-44 w-11/12 overflow-auto">
     { media.map((movie, index) => {
         return (
             <img

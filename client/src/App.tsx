@@ -20,7 +20,6 @@ function App(): ReactElement {
 				<Routes>
 					<Route path='/login' element={<LoginPage />} />
 					<Route path='/register' element={<SignUpPage />} />
-					<Route path='/profile/:username' element='' />
 					<Route path='/mainfeed' element={<MainFeed />} />
 					<Route path='/search' element={<SearchPage />} />
 					<Route path='/profile' element={<Profile />} />

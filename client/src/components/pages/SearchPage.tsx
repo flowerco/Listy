@@ -6,6 +6,8 @@ import { Movie } from "../../../customTypes";
 import SearchList from "./SearchList";
 import "../PostForm.css";
 import { onPostAdded } from "../../utils/PostFormServices";
+import { TextField } from "@mui/material";
+import { MovieCard } from "../MovieCard";
 
 export const SearchPage = (): ReactElement => {
 	const authState = useAppSelector((state) => state.authReducer);
@@ -17,6 +19,7 @@ export const SearchPage = (): ReactElement => {
   const [popupActive, setPopupActive] = useState(false);
   const [movie, setMovie] = useState(initialState);
 
+	// Function to search for movies as the title is typed
   const handleFormChange = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -27,6 +30,7 @@ export const SearchPage = (): ReactElement => {
       : setSearchList(await searchMovies(newVal));
   };
 
+	// Function to select a movie and open a modal popup when clicked
   const handleMovieClick = (movie: Movie) => {
     setPopupActive(true);
     setMovie({
@@ -45,16 +49,13 @@ export const SearchPage = (): ReactElement => {
     setFormState(initialState);
   };
 
-	// if (isLoading) {
-	// 	return <div>SearchPage Loading...</div>;
-	// }
-
 	return authState.isAuthenticated ? (
 		<main className='login-page'>
+			{ popupActive ? <MovieCard movie={movie} popupCallback={setPopupActive} submitCallback={onSubmit}/> : <></>}
 			<section className='search-container'>
-				<h1 className='hello'>Hello!</h1>
-				<label className='mt-4'>Search for Movies/TV:</label>
-					<input className='search-bar' type='text' onChange={handleFormChange} value={formState.title} />
+				<label className='my-4'>Search for Movies/TV:</label>
+				<TextField variant="outlined" label="Start your adventure..." className='search-bar' type='text' onChange={handleFormChange} value={formState.title} />
+				<SearchList media={searchList} callback={handleMovieClick} />
 			</section>
 		</main>
 	) : (

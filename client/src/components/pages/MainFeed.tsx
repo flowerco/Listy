@@ -18,7 +18,7 @@ export const MainFeed = (): ReactElement => {
 			<section className='posts-container'>
 				{posts.map((post) => (
 					<div className='image-and-post' key={post.id}>
-						<img className='post-image' src={post.image} />
+						<img className='post-image' src={`https://image.tmdb.org/t/p/w300${post.image}`} />
 						<section className='post-container'>
 							<h1 className='post-name'>{post.title}</h1>
 							<p className='post-rating'>{post.rating}</p>
