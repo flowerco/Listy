@@ -14,6 +14,7 @@ body.active-modal {
 
 .modal-content {
     display: flex;
+    flex-direction: column;
     position: fixed;
     background: white;
     border-radius: 5px;
@@ -28,8 +29,8 @@ body.active-modal {
         0 22.3px 17.9px rgba(0, 0, 0, 0.072),
         0 41.8px 33.4px rgba(0, 0, 0, 0.086),
         0 100px 80px rgba(0, 0, 0, 0.12);
-    /* left: 10%; */
-    /* bottom: 20%; */
+    /* left: 10%; 
+    bottom: 20%; */
     z-index: 105;
 }
 
@@ -91,38 +92,6 @@ form {
 label {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 3vh;
-}
-
-.close-modal {
-    display: flex;
-    /* position: fixed; */
-    justify-content: center;
-    align-items: center;
-    border: 0;
-    background-color: #31433b;
-    border-radius: 10px;
-    color: white;
-    width: 30%;
-    height: 6vh;
-    bottom: 22%;
-    left: 15%;
-    font-weight: bold;
-}
-
-.post-modal {
-    display: flex;
-    /* position: fixed; */
-    justify-content: center;
-    align-items: center;
-    border: 0;
-    background-color: #6b9080;
-    border-radius: 10px;
-    color: white;
-    width: 30%;
-    height: 6vh;
-    bottom: 22%;
-    right: 15%;
-    font-weight: bold;
 }
 
 .modal,

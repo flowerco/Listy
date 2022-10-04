@@ -40,16 +40,25 @@ export const SearchPage = (): ReactElement => {
 		});
 	};
 
-	const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+	const closePopup = () => {
+		setPopupActive(false);
+		setFormState(initialState);
+		setSearchList([]);
+	};
+
+	const onSubmit = async (
+		rating: string,
+		event: React.MouseEvent<HTMLButtonElement>
+	) => {
 		const newPost = await onPostAdded({
+			...formState,
 			userId: '6339ea6ea686a0ddcd561ffd',
 			id: '',
-			...formState,
+			rating,
 		});
 		// TODO: Update state in redux
 		// dispatch({ type:'ADD_POST', payload: newPost });
-		setPopupActive(false);
-		setFormState(initialState);
+		closePopup();
 	};
 
 	return authState.isAuthenticated ? (
