@@ -8,7 +8,7 @@ const SearchList = ({ media, callback } : { media: Movie[], callback: (movie: Mo
     { media.map((movie, index) => {
         return (
             <img
-              className="object-cover shadow-md h-full mr-3"
+              className="object-cover shadow-md h-full mr-3 cursor-pointer"
               key={index} 
               onClick={() => callback(movie)} 
               src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}

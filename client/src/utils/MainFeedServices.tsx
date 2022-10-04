@@ -8,7 +8,10 @@ export const fetchPosts: (userid: string) => Promise<PostObj[]> = async (
 	try {
 		// TODO: MAKE THIS DYNAMIC USING REDUX/COOKIES
 		// const res = await axios.get(postsBaseUrl + `/mainfeed/${userid}`);
-		const res = await axios.get(postsBaseUrl + `/mainfeed/${userid}`);
+		const res = await axios.get(postsBaseUrl + `/mainfeed/${userid}`,
+			// { headers: { Authorization: "Bearer " + cookie } }
+			{ withCredentials: true }
+		);
 		return res.data;
 	} catch (error) {
 		console.log('MAINFEED FETCHPOST: ', error);

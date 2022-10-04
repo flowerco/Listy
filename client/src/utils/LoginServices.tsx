@@ -6,6 +6,7 @@ export const verifyUser = async (
 		const response = await fetch('http://localhost:3030/login', {
 			method: 'POST',
 			headers: { 'Content-type': 'application/json' },
+			credentials: "include",
 			body: JSON.stringify({ email, password }),
 		});
 		const data = await response.json();
