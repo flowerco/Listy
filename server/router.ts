@@ -5,6 +5,7 @@ import {
 	getAllPosts,
 	getPost,
 	toggleLike,
+  deleteAllPosts
 } from './controllers/post.controller';
 import {
 	deleteUser,
@@ -38,6 +39,7 @@ router.post('/api/posts/', createPost);
 // router.get("/api/posts/:id", getPost);
 // TOFIX: Doesn't look like the below route is used, seems like '/posts' in the user controller is the one used up to now.
 router.get('/mainfeed', checkToken, getAllPosts);
+router.delete('/api/posts/delete', deleteAllPosts);
 // router.get("/api/posts/posts", getAllPosts);
 // router.delete("/api/posts/post/delete/:id", deletePost);
 // router.put("/api/posts/:id/like", toggleLike);
