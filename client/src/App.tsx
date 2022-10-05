@@ -14,7 +14,7 @@ function App(): ReactElement {
 		<BrowserRouter>
 			<LogoNavbar />
 
-			<section className='flex fixed h-[80vh] w-full bg-teal-600'>
+			<section className='flex fixed h-full w-full bg-teal-600'>
 				<Routes>
 					<Route path='/login' element={<LoginPage />} />
 					<Route path='/register' element={<SignUpPage />} />
@@ -25,9 +25,7 @@ function App(): ReactElement {
 				</Routes>
 			</section>
 
-			<footer className='flex bg-blue-400 h-[10vh] w-full fixed bottom-0'>
-				<Navbar />
-			</footer>
+			<Navbar />
 		</BrowserRouter>
 	);
 }

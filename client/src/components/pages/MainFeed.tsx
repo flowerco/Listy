@@ -13,9 +13,9 @@ export const MainFeed = (): ReactElement => {
 	}, []);
 
 	return (
-		<main className='flex flex-col w-full items-center'>
+		<main className='flex w-full items-center flex-col'>
 			<h1 className='mainfeed-title text-[5vh]'>MainFeed</h1>
-			<section className='flex  w-full flex-col items-center'>
+			<section>
 				{posts ? (
 					posts.map((post) => (
 						<div className='image-and-post' key={post.id}>

@@ -12,7 +12,7 @@ const LogoutButton = (): ReactElement => {
 
 	return authState.isAuthenticated ? (
 		<button
-			className=' bg-milita-green h-[6vh] w-24 rounded-xl text-white font-extrabold mr-5'
+			className=' bg-milita-green h-[6vh] w-24 rounded-xl text-white font-extrabold mr-5 shadow-xl'
 			onClick={() => logoutHandler()}
 		>
 			Logout

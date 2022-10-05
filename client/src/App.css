@@ -57,19 +57,19 @@
 	font-weight: bold;
 }
 
-.black-listy-logo {
+/* .black-listy-logo {
 	display: flex;
 	position: fixed;
 	bottom: 50%;
 	height: 10vh;
-}
+} */
 
-.black-listy-nav-logo {
+/* .black-listy-nav-logo {
 	display: flex;
 	position: fixed;
 	bottom: 90%;
 	height: 10vh;
-}
+} */
 
 .main-content {
 	display: flex;
@@ -79,11 +79,11 @@
 	background: white;
 }
 
-.nav-top {
+/* .nav-top {
 	height: 10vh;
 	background: white;
 	position: sticky;
-}
+} */
 
 .nav-bottom {
 	display: flex;
@@ -119,8 +119,8 @@
 .profile-logo {
 	display: flex;
 	position: fixed;
-	bottom: 2%;
-	left: 45%;
+	bottom: 1.5%;
+	left: 50%;
 	height: 7vh;
 	width: 7vh;
 }
@@ -128,8 +128,8 @@
 .feed-logo {
 	display: flex;
 	position: fixed;
-	bottom: 2%;
-	left: 6%;
+	bottom: 1.5%;
+	left: 5%;
 	height: 7vh;
 	width: 7vh;
 }
@@ -137,7 +137,7 @@
 .add-logo {
 	display: flex;
 	position: fixed;
-	right: 2%;
+	right: 1.5%;
 	height: 5vh;
 	width: 5vh;
 	top: 18%;
@@ -146,8 +146,8 @@
 .search-logo {
 	display: flex;
 	position: fixed;
-	bottom: 2%;
-	right: 6%;
+	bottom: 1.5%;
+	right: 5%;
 	height: 7vh;
 	width: 7vh;
 }
@@ -228,12 +228,12 @@
 	margin: '1rem' '0';
 }
 
-.mainfeed-title {
+/* .mainfeed-title {
 	position: fixed;
 	left: 25%;
 	top: 15%;
 	font-size: 5vh;
-}
+} */
 
 .hello {
 	font-size: 5vh;

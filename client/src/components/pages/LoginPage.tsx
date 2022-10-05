@@ -14,7 +14,7 @@ import { useAppDispatch } from '../../redux/hooks';
 import { useNavigate } from 'react-router-dom';
 import { verifyUser } from '../../utils/LoginServices';
 import { verify } from 'crypto';
-const blackListyLogo = require('../../assets/listyLogoBlack.svg');
+import listyLogoBlack from '../../assets/listyLogoBlack.svg';
 
 const theme = createTheme();
 
@@ -39,11 +39,20 @@ export default function LoginPage() {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Container component='main' maxWidth='xs'>
+			<Container
+				component='main'
+				maxWidth='xs'
+				className='flex-col border-2  h-[50vh] m-auto shadow-2xl'
+			>
 				<CssBaseline />
+				<div className='flex justify-center'>
+					<img
+						className='black-listy-nav-logo  h-[10vh]'
+						src={listyLogoBlack}
+					/>
+				</div>
 				<Box
 					sx={{
-						marginTop: 8,
 						display: 'flex',
 						flexDirection: 'column',
 						alignItems: 'center',
@@ -96,7 +105,7 @@ export default function LoginPage() {
 						type='submit'
 						fullWidth
 						variant='contained'
-						sx={{ mt: 3, mb: 2 }}
+						sx={{ mt: 3, mb: 2, backgroundColor: '#6b9080' }}
 					>
 						Sign In
 					</Button>
