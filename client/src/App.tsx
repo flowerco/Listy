@@ -12,15 +12,14 @@ import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { validateJwtCookie } from './utils/LoginServices';
 
 function App(): ReactElement {
-
-	const authState = useAppSelector(state => state.authReducer);
+	const authState = useAppSelector((state) => state.authReducer);
 	const dispatch = useAppDispatch();
 
-	useEffect (() => {
+	useEffect(() => {
 		// Send an initial login request using the checkToken middleware.
 		// If it returns a success status code then we will have validated
 		// the existing login and can set the state accordingly.
-		validateJwtCookie().then(res => {
+		validateJwtCookie().then((res) => {
 			if (res !== 'LOGOUT') {
 				dispatch({ type: 'LOGIN', payload: res });
 			}
@@ -32,8 +31,8 @@ function App(): ReactElement {
 			<LogoNavbar />
 
 			<section className='flex fixed h-[80vh] w-full bg-teal-600'>
-				{ authState.isAuthenticated 
-					? <Routes>
+				{authState.isAuthenticated ? (
+					<Routes>
 						<Route path='/login' element={<LoginPage />} />
 						<Route path='/register' element={<SignUpPage />} />
 						<Route path='/mainfeed' element={<MainFeed />} />
@@ -41,15 +40,14 @@ function App(): ReactElement {
 						<Route path='/profile' element={<Profile />} />
 						<Route path='/' element={<Navigate replace to='/mainfeed' />} />
 					</Routes>
-					: <Routes>
-							<Route path='*' element={<LoginPage />} />
-						</Routes>
-				}
+				) : (
+					<Routes>
+						<Route path='*' element={<LoginPage />} />
+					</Routes>
+				)}
 			</section>
 
-			<footer className='flex bg-blue-400 h-[10vh] w-full fixed bottom-0'>
-				<Navbar />
-			</footer>
+			<Navbar />
 		</BrowserRouter>
 	);
 }

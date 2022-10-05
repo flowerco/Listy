@@ -14,7 +14,7 @@ import { useAppDispatch } from '../../redux/hooks';
 import { useNavigate } from 'react-router-dom';
 import { verifyUser } from '../../utils/LoginServices';
 import jwt_decode from 'jwt-decode';
-const blackListyLogo = require('../../assets/listyLogoBlack.svg');
+import listyLogoBlack from '../../assets/listyLogoBlack.svg';
 
 const theme = createTheme();
 
@@ -33,7 +33,8 @@ export default function LoginPage() {
 		const result = await verifyUser(data.get('email'), data.get('password'));
 		if (result instanceof Error) return alert('Problem with log in.');
 		// Result should be a jwt string, which we can decode to get the user ID
-		const decoded : { expiresAt:number, userId:string, iat: number } = jwt_decode(result);
+		const decoded: { expiresAt: number; userId: string; iat: number } =
+			jwt_decode(result);
 		// Update the state to include the JWT and set a cookie
 		dispatch({ type: 'LOGIN', payload: decoded.userId });
 		navigate('/mainfeed');
@@ -41,11 +42,20 @@ export default function LoginPage() {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Container component='main' maxWidth='xs'>
+			<Container
+				component='main'
+				maxWidth='xs'
+				className='flex-col border-2  h-[50vh] m-auto shadow-2xl'
+			>
 				<CssBaseline />
+				<div className='flex justify-center'>
+					<img
+						className='black-listy-nav-logo  h-[10vh]'
+						src={listyLogoBlack}
+					/>
+				</div>
 				<Box
 					sx={{
-						marginTop: 8,
 						display: 'flex',
 						flexDirection: 'column',
 						alignItems: 'center',
@@ -98,7 +108,7 @@ export default function LoginPage() {
 						type='submit'
 						fullWidth
 						variant='contained'
-						sx={{ mt: 3, mb: 2 }}
+						sx={{ mt: 3, mb: 2, backgroundColor: '#6b9080' }}
 					>
 						Sign In
 					</Button>

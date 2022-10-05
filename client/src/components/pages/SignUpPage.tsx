@@ -14,41 +14,39 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { createUser } from '../../utils/SignUpServices';
 import { Navigate, useNavigate } from 'react-router-dom';
-const blackListyLogo = require('../../assets/listyLogoBlack.svg');
+import listyLogoBlack from '../../assets/listyLogoBlack.svg';
 
 const theme = createTheme();
 
 export default function SignUpPage() {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
+
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-
-		// extract data from form
 		const data = new FormData(event.currentTarget);
-		console.log({
-			email: data.get('email'),
-			password: data.get('password'),
-		});
-
-		// call async API service
 		const result = await createUser(data.get('email'), data.get('password'));
-		// handle error case
 		if (result instanceof Error) return alert('Problem with sign up.');
-		console.log(result);
-		// dispatch user data to necesasry app state
-
 		dispatch({ type: 'LOGIN', payload: result._id });
 		navigate('/mainfeed');
 	};
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Container component='main' maxWidth='xs'>
+			<Container
+				component='main'
+				maxWidth='xs'
+				className='flex flex-col border-2  h-[50vh] m-auto shadow-2xl'
+			>
 				<CssBaseline />
+				<div className='flex justify-center'>
+					<img
+						className='black-listy-nav-logo  h-[10vh]'
+						src={listyLogoBlack}
+					/>
+				</div>
 				<Box
 					sx={{
-						marginTop: 8,
 						display: 'flex',
 						flexDirection: 'column',
 						alignItems: 'center',
@@ -120,7 +118,7 @@ export default function SignUpPage() {
 							type='submit'
 							fullWidth
 							variant='contained'
-							sx={{ mt: 3, mb: 2 }}
+							sx={{ mt: 3, mb: 2, backgroundColor: '#6b9080' }}
 						>
 							Sign Up
 						</Button>

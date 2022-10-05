@@ -9,7 +9,7 @@ export const LogoNavbar = (): ReactElement => {
 	return authState.isAuthenticated ? (
 		<div className='flex h-[10vh] bg-slate-500 sticky items-center w-full justify-between'>
 			<div>
-				<img className='black-listy-nav-logo' src={listyLogoBlack} />
+				<img className='black-listy-nav-logo h-[10vh] ' src={listyLogoBlack} />
 			</div>
 			<div>
 				<LogoutButton />
