@@ -6,6 +6,7 @@ export interface PostType {
 	rating: string;
 	genre: string;
 	image: string;
+	smallImage: string;
 	likes: [string];
 }
 
@@ -32,7 +33,7 @@ export interface UserDoc extends UserType {
 }
 
 export interface CookieType {
-  expiresAt: number;
-  userId: string;
-  iat: number;
+	expiresAt: number;
+	userId: string;
+	iat: number;
 }

@@ -9,7 +9,10 @@ export const MainFeed = (): ReactElement => {
 	const [posts, setPosts] = useState([] as PostObj[]);
 
 	useEffect(() => {
-		fetchPosts().then((res) => setPosts(res));
+		fetchPosts().then((res) => {
+			console.log(res);
+			return setPosts(res);
+		});
 	}, []);
 
 	// TODO: The 'id' property is currently '' for all posts, so we
@@ -23,7 +26,7 @@ export const MainFeed = (): ReactElement => {
 						<div className='image-and-post' key={index}>
 							<img
 								className='post-image object-cover'
-								src={`https://image.tmdb.org/t/p/w300${post.image}`}
+								src={`https://image.tmdb.org/t/p/w300${post.smallImage}`}
 							/>
 							<section className='post-container shadow-2xl'>
 								<p>{post.title}</p>

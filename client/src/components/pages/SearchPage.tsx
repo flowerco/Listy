@@ -14,7 +14,13 @@ export const SearchPage = (): ReactElement => {
 	const authState = useAppSelector((state) => state.authReducer);
 	const dispatch = useAppDispatch();
 
-	const initialState = { title: '', genre: '', image: '', rating: '' };
+	const initialState = {
+		title: '',
+		genre: '',
+		image: '',
+		smallImage: '',
+		rating: '',
+	};
 
 	const [formState, setFormState] = useState(initialState);
 	const [searchList, setSearchList] = useState([] as Movie[]);
@@ -40,7 +46,8 @@ export const SearchPage = (): ReactElement => {
 			title: movie.title,
 			genre: movie.genre,
 			image: movie.poster_path,
-			rating: '4/10',
+			smallImage: movie.backdrop_path,
+			rating: '',
 		});
 	};
 
@@ -55,7 +62,10 @@ export const SearchPage = (): ReactElement => {
 		event: React.MouseEvent<HTMLButtonElement>
 	) => {
 		const newPost = await postPost({
-			...movie,
+			title: movie.title,
+			genre: movie.genre,
+			image: movie.image,
+			smallImage: movie.smallImage,
 			rating,
 			id: '',
 			userId: authState.userId,
@@ -78,8 +88,8 @@ export const SearchPage = (): ReactElement => {
 				) : (
 					<></>
 				)}
-				<section className='search-container justify-center'>
-					<label className='my-4'>Search for Movies/TV:</label>
+				<section className='search-container'>
+					<label className=''>Search for Movies/TV:</label>
 					<TextField
 						variant='outlined'
 						label='Start your adventure...'
