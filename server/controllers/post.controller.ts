@@ -137,6 +137,18 @@ export const getAllPosts = async (req: Request, res: Response) => {
 	}
 };
 
+
+export const deleteAllPosts = async (req: Request, res: Response) => {
+  try {
+    const cookie: CookieType = jwt_decode(req.cookies.sessionJwt);
+    console.log('User ID found on cookie: ', cookie.userId);
+    await Post.deleteMany({ userId: cookie.userId });
+    res.sendStatus(204);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
 // router.get('/mainfeed', [checkJwt, checkJwt2], async (req: Request, res: Response) =>{
 //   const userId = req.currUser;
 //   try {
