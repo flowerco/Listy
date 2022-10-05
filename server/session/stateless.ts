@@ -20,6 +20,14 @@ export const createSession = (userId: string) => {
   return jwt.sign(newSession, SUPER_SECRET_KEY);
 }
 
+export const expireSession = () => {
+  const newSession = {
+    expiresAt: -1,
+    userId: 'Nope'
+  }
+  return jwt.sign(newSession, SUPER_SECRET_KEY);
+}
+
 export const getSession = (token: string) => {
   const sessionData = <SessionDataPayload>jwt.verify(token, SUPER_SECRET_KEY);
 

@@ -1,11 +1,13 @@
 import { ReactElement } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { removeJwtCookie } from '../../utils/LoginServices';
 
 const LogoutButton = (): ReactElement => {
 	const authState = useAppSelector((state) => state.authReducer);
 	const dispatch = useAppDispatch();
 
 	const logoutHandler = () => {
+		removeJwtCookie();
 		dispatch({ type: 'LOGOUT' });
 	};
 

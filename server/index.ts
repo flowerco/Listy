@@ -19,11 +19,11 @@ const PORT: number = parseInt(process.env.PORT as string, 10) || 3030;
 const app = express();
 
 //middleware
+app.use(cookieParser());
 app.use(cors({ origin: true, credentials: true }));
 app.use(helmet());
 app.use(morgan('common'));
 app.use(express.json());
-app.use(cookieParser());
 
 // Middleware to use/decode jwt
 app.use((req, res, next) => {
