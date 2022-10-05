@@ -32,13 +32,13 @@ export const MovieCard = (
               Genre: {movie.genre}
             </div>
             <div className="text-2xl">
-              <label>Rating:</label>
+              <label>Rating Out of 10:</label>
               <input
                 required
                 className='w-full'
                 name='rating'
                 type='text'
-                placeholder='rating'
+                placeholder='Set rating...'
                 onChange={e => setRating(e.target.value)}
                 value={rating}
               />

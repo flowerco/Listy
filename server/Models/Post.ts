@@ -9,7 +9,7 @@ const PostSchema = new Schema<PostType>({
     type: String,
     required: true,
   },
-  name: {
+  title: {
     type: String,
     required: true,
   },

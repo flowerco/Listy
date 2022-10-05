@@ -1,5 +1,5 @@
 import { FormEvent, ReactElement, useState } from 'react';
-import { useAppSelector } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import React from 'react';
 import { searchMovies } from '../../utils/MoviedApiServices';
 import { Movie } from '../../../customTypes';
@@ -8,9 +8,12 @@ import '../PostForm.css';
 import { onPostAdded } from '../../utils/PostFormServices';
 import { TextField } from '@mui/material';
 import { MovieCard } from '../MovieCard';
+import { postPost } from '../../utils/MainFeedServices';
 
 export const SearchPage = (): ReactElement => {
 	const authState = useAppSelector((state) => state.authReducer);
+	const dispatch = useAppDispatch();
+
 	const initialState = { title: '', genre: '', image: '', rating: '' };
 
 	const [formState, setFormState] = useState(initialState);
@@ -32,6 +35,7 @@ export const SearchPage = (): ReactElement => {
 	// Function to select a movie and open a modal popup when clicked
 	const handleMovieClick = (movie: Movie) => {
 		setPopupActive(true);
+		console.log('Setting current movie: ', movie);
 		setMovie({
 			title: movie.title,
 			genre: movie.genre,
@@ -50,12 +54,13 @@ export const SearchPage = (): ReactElement => {
 		rating: string,
 		event: React.MouseEvent<HTMLButtonElement>
 	) => {
-		const newPost = await onPostAdded({
-			...formState,
-			userId: '6339ea6ea686a0ddcd561ffd',
-			id: '',
+		const newPost = await postPost({
+			...movie,
 			rating,
+			id: '',
+			userId: authState.userId,
 		});
+		console.log('New movie post: ', newPost);
 		// TODO: Update state in redux
 		// dispatch({ type:'ADD_POST', payload: newPost });
 		closePopup();

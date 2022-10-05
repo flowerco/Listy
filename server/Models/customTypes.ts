@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 export interface PostType {
 	userId: string;
-	name: string;
+	title: string;
 	rating: string;
 	genre: string;
 	image: string;
