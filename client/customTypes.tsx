@@ -7,6 +7,7 @@ export type PostObj = {
 	title: string;
 	rating: string;
 	genre: string;
+	backdrop_path: string;
 };
 
 export type PostData = {
@@ -20,4 +21,5 @@ export type Movie = {
 	title: string;
 	poster_path: string;
 	genre: string;
+	backdrop_path: string;
 };

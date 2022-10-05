@@ -11,7 +11,13 @@ import { MovieCard } from '../MovieCard';
 
 export const SearchPage = (): ReactElement => {
 	const authState = useAppSelector((state) => state.authReducer);
-	const initialState = { title: '', genre: '', image: '', rating: '' };
+	const initialState = {
+		title: '',
+		genre: '',
+		image: '',
+		smallImage: '',
+		rating: '',
+	};
 
 	const [formState, setFormState] = useState(initialState);
 	const [searchList, setSearchList] = useState([] as Movie[]);
@@ -36,7 +42,8 @@ export const SearchPage = (): ReactElement => {
 			title: movie.title,
 			genre: movie.genre,
 			image: movie.poster_path,
-			rating: '4/10',
+			smallImage: movie.backdrop_path,
+			rating: '',
 		});
 	};
 

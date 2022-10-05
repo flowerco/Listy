@@ -21,7 +21,7 @@ export const MainFeed = (): ReactElement => {
 						<div className='image-and-post' key={post.id}>
 							<img
 								className='post-image'
-								src={`https://image.tmdb.org/t/p/w300${post.image}`}
+								src={`https://image.tmdb.org/t/p/w300${post.backdrop_path}`}
 							/>
 							<section className='post-container'>
 								<h1 className='post-name'>{post.title}</h1>
