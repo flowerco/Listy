@@ -30,7 +30,7 @@ function App(): ReactElement {
 		<BrowserRouter>
 			<LogoNavbar />
 
-			<section className='flex fixed h-full w-full bg-teal-600'>
+			<section className='flex fixed h-full w-full '>
 				{authState.isAuthenticated ? (
 					<Routes>
 						<Route path='/login' element={<LoginPage />} />

@@ -15,8 +15,13 @@ const Profile = (): ReactElement => {
 	return authState.isAuthenticated ? (
 		<main className='profile-page-div'>
 			<article>
-				<section className='profile-nav-bar'>
-					{user?.picture && <img className='profile-pic' src={user.picture} />}
+				<section className='profile-nav-bar items-center'>
+					{user?.picture && (
+						<img
+							className='profile-pic mx-7 rounded-full h-[10vh]'
+							src={user.picture}
+						/>
+					)}
 					<h2 className='profile-name'>{user?.nickname}</h2>
 					<button className='friends-button'>
 						<img

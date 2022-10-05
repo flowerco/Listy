@@ -45,7 +45,7 @@ export default function LoginPage() {
 			<Container
 				component='main'
 				maxWidth='xs'
-				className='flex-col border-2  h-[50vh] m-auto shadow-2xl'
+				className='flex-col  h-[50vh] m-auto shadow-2xl'
 			>
 				<CssBaseline />
 				<div className='flex justify-center'>
@@ -122,7 +122,7 @@ export default function LoginPage() {
 					>
 						<Grid item xs></Grid>
 						<Grid item>
-							<Link href='/register' variant='body2'>
+							<Link href='/register' variant='body2' sx={{ color: '#6b9080' }}>
 								{"Don't have an account? Sign Up"}
 							</Link>
 						</Grid>

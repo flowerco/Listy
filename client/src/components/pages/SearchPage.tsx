@@ -78,7 +78,7 @@ export const SearchPage = (): ReactElement => {
 
 	return authState.isAuthenticated ? (
 		<div className='flex w-full h-full items-center justify-center'>
-			<main className='flex fixed bg-yellow-600 justify-center shadow-2xl items-center rounded-xl h-[60vh] w-[80vw] mb-[20vh]'>
+			<main className='flex fixed justify-center shadow-2xl items-center rounded-xl h-[60vh] w-[80vw] mb-[20vh]'>
 				{popupActive ? (
 					<MovieCard
 						movie={movie}

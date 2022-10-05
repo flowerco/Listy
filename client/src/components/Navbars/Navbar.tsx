@@ -5,7 +5,7 @@ import { useAppSelector } from '../../redux/hooks';
 export const Navbar = (): ReactElement => {
 	const authState = useAppSelector((state) => state.authReducer);
 	return authState.isAuthenticated ? (
-		<nav className='flex bg-blue-400 h-[10vh] w-full fixed bottom-0 '>
+		<nav className='flex bg-lighter-green h-[10vh] w-full fixed bottom-0 '>
 			<CustomLink to='/mainfeed'>
 				<img
 					className='feed-logo'

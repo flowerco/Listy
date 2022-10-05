@@ -36,7 +36,7 @@ export default function SignUpPage() {
 			<Container
 				component='main'
 				maxWidth='xs'
-				className='flex flex-col border-2  h-[50vh] m-auto shadow-2xl'
+				className='flex flex-col  h-[50vh] m-auto shadow-2xl'
 			>
 				<CssBaseline />
 				<div className='flex justify-center'>
@@ -131,7 +131,7 @@ export default function SignUpPage() {
 							}}
 						>
 							<Grid item>
-								<Link href='/login' variant='body2'>
+								<Link href='/login' variant='body2' sx={{ color: '#6b9080' }}>
 									Already have an account? Sign in
 								</Link>
 							</Grid>

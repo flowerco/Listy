@@ -5,6 +5,7 @@ module.exports = {
 		extend: {
 			colors: {
 				'milita-green': '#31433b',
+				'lighter-green': '#6b9080',
 			},
 		},
 		screens: {
