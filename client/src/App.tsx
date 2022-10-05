@@ -30,7 +30,7 @@ function App(): ReactElement {
 		<BrowserRouter>
 			<LogoNavbar />
 
-			<section className='flex fixed h-[80vh] w-full bg-teal-600'>
+			<section className='flex fixed h-full w-full bg-teal-600'>
 				{authState.isAuthenticated ? (
 					<Routes>
 						<Route path='/login' element={<LoginPage />} />
@@ -42,6 +42,7 @@ function App(): ReactElement {
 					</Routes>
 				) : (
 					<Routes>
+						<Route path='/register' element={<SignUpPage />} />
 						<Route path='*' element={<LoginPage />} />
 					</Routes>
 				)}
