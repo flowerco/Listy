@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 const initialState = {
-	isAuthenticated: true,
+	isAuthenticated: false,
 	userId: '',
 };
 const authReducer = (
@@ -15,6 +15,7 @@ const authReducer = (
 		case 'LOGIN':
 			const newstate = { isAuthenticated: true, userId: action.payload };
 			console.log(newstate);
+			
 			return newstate;
 		case 'LOGOUT':
 			return {

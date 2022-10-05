@@ -1,11 +1,13 @@
 import { ReactElement } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { removeJwtCookie } from '../../utils/LoginServices';
 import { useNavigate } from 'react-router-dom';
 const LogoutButton = (): ReactElement => {
 	const authState = useAppSelector((state) => state.authReducer);
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const logoutHandler = () => {
+		removeJwtCookie();
 		dispatch({ type: 'LOGOUT' });
 		navigate('/login');
 	};

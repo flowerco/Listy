@@ -3,6 +3,8 @@ import { Request, Response } from "express";
 import { Post }  from "../models/Post";
 import { User } from "../models/User";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { CookieType } from "../models/customTypes";
 // import { checkJwt, checkJwt2 } from "../routes/middleware";
 
 //get the users posts with Authentication -- TODO: should probably go to posts route!
@@ -118,8 +120,10 @@ export const getPost = async (req: Request, res: Response) => {
 
 export const getAllPosts = async (req: Request, res: Response) => {
   try {
-    const currUser = await User.findById(req.params.userId);
-    const userPosts = await Post.find({ userId: req.params.userId });
+    const cookie: CookieType = jwt_decode(req.cookies.sessionJwt);
+    console.log('User ID found on cookie: ', cookie.userId);
+    const currUser = await User.findById(cookie.userId);
+    const userPosts = await Post.find({ userId: cookie.userId });
     const friendPosts = await Promise.all(
       currUser!.following.map((friendId) => {
         //this will return each post

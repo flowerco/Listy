@@ -9,7 +9,7 @@ export const MainFeed = (): ReactElement => {
 	const [posts, setPosts] = useState([] as PostObj[]);
 
 	useEffect(() => {
-		fetchPosts(userState.userId).then((res) => setPosts(res));
+		fetchPosts().then((res) => setPosts(res));
 	}, []);
 
 	return (

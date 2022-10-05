@@ -1,4 +1,4 @@
-import { login, register } from './controllers/auth.controller';
+import { checkToken, login, register, validated, removeToken } from './controllers/auth.controller';
 import {
 	createPost,
 	deletePost,
@@ -20,6 +20,8 @@ const router = Router();
 // that we can probably remove from the front end and back end code.
 
 // Authentication routes
+router.get('/validate', checkToken, validated);
+router.get('/remove', checkToken, removeToken);
 router.post('/register', register);
 router.post('/login', login);
 
@@ -35,7 +37,7 @@ router.delete('/api/users/delete', deleteUser);
 router.post('/api/posts/', createPost);
 // router.get("/api/posts/:id", getPost);
 // TOFIX: Doesn't look like the below route is used, seems like '/posts' in the user controller is the one used up to now.
-router.get('/mainfeed/:userId', getAllPosts);
+router.get('/mainfeed', checkToken, getAllPosts);
 // router.get("/api/posts/posts", getAllPosts);
 // router.delete("/api/posts/post/delete/:id", deletePost);
 // router.put("/api/posts/:id/like", toggleLike);

@@ -13,7 +13,7 @@ import Container from '@mui/material/Container';
 import { useAppDispatch } from '../../redux/hooks';
 import { useNavigate } from 'react-router-dom';
 import { verifyUser } from '../../utils/LoginServices';
-import { verify } from 'crypto';
+import jwt_decode from 'jwt-decode';
 const blackListyLogo = require('../../assets/listyLogoBlack.svg');
 
 const theme = createTheme();
@@ -32,8 +32,10 @@ export default function LoginPage() {
 
 		const result = await verifyUser(data.get('email'), data.get('password'));
 		if (result instanceof Error) return alert('Problem with log in.');
-		console.log(result._id);
-		dispatch({ type: 'LOGIN', payload: result._id });
+		// Result should be a jwt string, which we can decode to get the user ID
+		const decoded : { expiresAt:number, userId:string, iat: number } = jwt_decode(result);
+		// Update the state to include the JWT and set a cookie
+		dispatch({ type: 'LOGIN', payload: decoded.userId });
 		navigate('/mainfeed');
 	};
 

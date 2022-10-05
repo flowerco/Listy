@@ -30,3 +30,9 @@ export interface SafeUserType {
 export interface UserDoc extends UserType {
 	_doc?: any;
 }
+
+export interface CookieType {
+  expiresAt: number;
+  userId: string;
+  iat: number;
+}
