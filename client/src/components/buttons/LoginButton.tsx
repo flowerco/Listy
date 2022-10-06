@@ -10,7 +10,11 @@ const LoginButton = (): ReactElement => {
 	};
 
 	return !authState.isAuthenticated ? (
-		<button className='login-button' onClick={() => loginHandler()}>
+		<button
+			id='LoginButton'
+			className='login-button'
+			onClick={() => loginHandler()}
+		>
 			Log In
 		</button>
 	) : (

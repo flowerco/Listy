@@ -15,6 +15,7 @@
 		"@types/mongodb": "^4.0.7",
 		"@types/node": "^18.7.23",
 		"axios": "^0.27.2",
+		"jest-svg-transformer": "^1.0.0",
 		"jwt-decode": "^3.1.2",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
@@ -32,7 +33,7 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
-		"test": "jest",
+		"test": "react-scripts test --env=jsdom",
 		"test:watch": "jest --watch",
 		"eject": "react-scripts eject"
 	},
