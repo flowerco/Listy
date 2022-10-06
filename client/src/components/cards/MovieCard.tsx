@@ -1,6 +1,6 @@
 import { ReactElement, useState } from "react";
-import { MovieCardData } from "../../customTypes";
-import './PostForm.css';
+import { MovieCardData } from "../../../customTypes";
+import '../Components.css';
 
 export const MovieCard = (
   { movie, popupCallback, submitCallback} 

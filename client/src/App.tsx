@@ -1,6 +1,6 @@
 import './App.css';
 import { ReactElement, useEffect, useState } from 'react';
-import Profile from './components/Profile';
+import Profile from './components/cards/Profile';
 import LoginPage from './components/pages/LoginPage';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Navbar } from './components/Navbars/Navbar';
@@ -29,7 +29,7 @@ function App(): ReactElement {
 	return (
 		<BrowserRouter>
 			<LogoNavbar />
-
+			
 			<section className='flex fixed h-full w-full '>
 				{authState.isAuthenticated ? (
 					<Routes>

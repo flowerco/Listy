@@ -1,17 +1,16 @@
 import { ReactElement, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { useAppSelector } from '../../redux/hooks';
 import React from 'react';
-import { searchMovies } from '../../utils/MoviedApiServices';
+import { fetchCategories, searchMovies } from '../../utils/MoviedApiServices';
 import { Movie } from '../../../customTypes';
 import SearchList from './SearchList';
-import '../PostForm.css';
+import '../Components.css';
 import { TextField } from '@mui/material';
-import { MovieCard } from '../MovieCard';
+import { MovieCard } from '../cards/MovieCard';
 import { postPost } from '../../utils/MainFeedServices';
 
 export const SearchPage = (): ReactElement => {
 	const authState = useAppSelector((state) => state.authReducer);
-	const dispatch = useAppDispatch();
 
 	const initialState = {
 		title: '',
@@ -22,6 +21,7 @@ export const SearchPage = (): ReactElement => {
 	};
 
 	const [formState, setFormState] = useState(initialState);
+	const [searching, setSearching] = useState(false);
 	const [searchList, setSearchList] = useState([] as Movie[]);
 	const [popupActive, setPopupActive] = useState(false);
 	const [movie, setMovie] = useState(initialState);
@@ -32,18 +32,26 @@ export const SearchPage = (): ReactElement => {
 	) => {
 		const newVal = event.target.value;
 		setFormState({ ...formState, title: newVal });
-		newVal === ''
-			? setSearchList([])
-			: setSearchList(await searchMovies(newVal));
+		if (newVal === '') {
+			setSearching(false);
+			setSearchList([]);
+		} else {
+			setSearching(true);
+			setSearchList(await searchMovies(newVal));
+		}
 	};
 
 	// Function to select a movie and open a modal popup when clicked
-	const handleMovieClick = (movie: Movie) => {
+	const handleMovieClick = async (movie: Movie) => {
+		setSearching(false);
 		setPopupActive(true);
 		console.log('Setting current movie: ', movie);
+		const categoryList = await fetchCategories();
+		const genreObj = categoryList.filter((cat: {id: number, name: string}) => cat.id.toString() === movie.genre)
+		console.log('Genre obj found: ', genreObj);
 		setMovie({
 			title: movie.title,
-			genre: movie.genre,
+			genre: genreObj[0].name,
 			image: movie.poster_path,
 			smallImage: movie.backdrop_path,
 			rating: '',
@@ -96,7 +104,7 @@ export const SearchPage = (): ReactElement => {
 						value={formState.title}
 					/>
 
-					<SearchList media={searchList} callback={handleMovieClick} />
+					<SearchList media={searchList} searching={searching} callback={handleMovieClick} />
 				</section>
 			</main>
 		</div>

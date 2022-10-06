@@ -2,10 +2,8 @@ import { ReactElement } from 'react';
 import { useState, useEffect } from 'react';
 import { fetchPosts } from '../../utils/MainFeedServices';
 import { PostObj } from '../../../customTypes';
-import { useAppSelector } from '../../redux/hooks';
 
 export const MainFeed = (): ReactElement => {
-	const authState = useAppSelector((state) => state.authReducer);
 	const [posts, setPosts] = useState([] as PostObj[]);
 
 	useEffect(() => {

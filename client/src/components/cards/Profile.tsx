@@ -1,6 +1,5 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import { ReactElement, useState } from 'react';
-import { useAppSelector } from '../redux/hooks';
+import { useAppSelector } from '../../redux/hooks';
 
 const Profile = (): ReactElement => {
 	const authState = useAppSelector((state) => state.authReducer);
