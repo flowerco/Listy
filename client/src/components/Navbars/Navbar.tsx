@@ -4,29 +4,31 @@ import { useAppSelector } from '../../redux/hooks';
 
 export const Navbar = (): ReactElement => {
 	const authState = useAppSelector((state) => state.authReducer);
-	return authState.isAuthenticated ? (
-		<nav className='flex bg-lighter-green h-[10vh] w-full fixed bottom-0 '>
-			<CustomLink to='/mainfeed'>
-				<img
-					className='feed-logo'
-					src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/640px-Hamburger_icon.svg.png'
-				/>
-			</CustomLink>
-			<CustomLink to='/profile'>
-				<img
-					className='profile-logo'
-					src='http://cdn.onlinewebfonts.com/svg/img_24787.png'
-				/>
-			</CustomLink>
-			<CustomLink to='/search'>
-				<img
-					className='search-logo'
-					src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Search_Icon.svg/1024px-Search_Icon.svg.png'
-				/>
-			</CustomLink>
-		</nav>
-	) : (
-		<></>
+	return (
+		<>
+			{ authState.isAuthenticated && (
+				<nav className='flex bg-lighter-green h-[10vh] w-full fixed bottom-0 '>
+					<CustomLink to='/mainfeed'>
+						<img
+							className='feed-logo'
+							src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/640px-Hamburger_icon.svg.png'
+						/>
+					</CustomLink>
+					<CustomLink to='/profile'>
+						<img
+							className='profile-logo'
+							src='http://cdn.onlinewebfonts.com/svg/img_24787.png'
+						/>
+					</CustomLink>
+					<CustomLink to='/search'>
+						<img
+							className='search-logo'
+							src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Search_Icon.svg/1024px-Search_Icon.svg.png'
+						/>
+					</CustomLink>
+				</nav>
+			)}
+		</>
 	);
 };
 

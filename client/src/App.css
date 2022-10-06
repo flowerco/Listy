@@ -4,28 +4,11 @@
 	padding: 0;
 }
 
-.Site {
+.site {
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
 }
-/* 
-.login-page {
-	display: flex;
-	position: fixed;
-	background: white;
-	border-radius: 5px;
-	justify-content: center;
-	align-items: center;
-	height: 60vh;
-	width: 80vw;
-	box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-		0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
-		0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-		0 100px 80px rgba(0, 0, 0, 0.12);
-	left: 10%;
-	bottom: 20%;
-} */
 
 .login-button {
 	display: flex;
@@ -57,20 +40,6 @@
 	font-weight: bold;
 }
 
-/* .black-listy-logo {
-	display: flex;
-	position: fixed;
-	bottom: 50%;
-	height: 10vh;
-} */
-
-/* .black-listy-nav-logo {
-	display: flex;
-	position: fixed;
-	bottom: 90%;
-	height: 10vh;
-} */
-
 .main-content {
 	display: flex;
 	position: fixed;
@@ -78,12 +47,6 @@
 	width: 100vw;
 	background: white;
 }
-
-/* .nav-top {
-	height: 10vh;
-	background: white;
-	position: sticky;
-} */
 
 .nav-bottom {
 	display: flex;
@@ -94,12 +57,6 @@
 	left: 0;
 }
 
-/* this one controls the color of the bottom nav bar
-.nav {
-	height: 10vh;
-	background: white;
-	width: 100vw;
-} */
 
 .profile-page-div {
 	display: flex;
@@ -182,26 +139,6 @@
 	width: 5vh;
 }
 
-/* .logout-button {
-	display: flex;
-	position: fixed;
-	justify-content: center;
-	align-items: center;
-	border: 0;
-	background-color: #31433b;
-	border-radius: 10px;
-	color: white;
-	width: 30%;
-	height: 6vh;
-	right: 5%;
-	top: 2%;
-	font-weight: bold;
-} */
-/* 
-.profile-pic {
-	height: 10vh;
-} */
-
 .profile-name {
 	font-size: clamp(1vw, 8vw, 25px);
 }
@@ -223,13 +160,6 @@
 	border-radius: '10px';
 	margin: '1rem' '0';
 }
-
-/* .mainfeed-title {
-	position: fixed;
-	left: 25%;
-	top: 15%;
-	font-size: 5vh;
-} */
 
 .hello {
 	font-size: 5vh;

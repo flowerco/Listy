@@ -1,11 +1,10 @@
-import { FormEvent, ReactElement, useState } from 'react';
+import { ReactElement, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import React from 'react';
 import { searchMovies } from '../../utils/MoviedApiServices';
 import { Movie } from '../../../customTypes';
 import SearchList from './SearchList';
 import '../PostForm.css';
-import { onPostAdded } from '../../utils/PostFormServices';
 import { TextField } from '@mui/material';
 import { MovieCard } from '../MovieCard';
 import { postPost } from '../../utils/MainFeedServices';
@@ -71,8 +70,6 @@ export const SearchPage = (): ReactElement => {
 			userId: authState.userId,
 		});
 		console.log('New movie post: ', newPost);
-		// TODO: Update state in redux
-		// dispatch({ type:'ADD_POST', payload: newPost });
 		closePopup();
 	};
 

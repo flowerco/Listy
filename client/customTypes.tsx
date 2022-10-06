@@ -23,3 +23,11 @@ export type Movie = {
 	genre: string;
 	backdrop_path: string;
 };
+
+export type MovieCardData = {
+  title: string,
+  genre: string,
+  image: string
+}
+
+

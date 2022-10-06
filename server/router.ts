@@ -33,11 +33,8 @@ router.put('/api/users/follow', toggleFollowUser);
 router.delete('/api/users/delete', deleteUser);
 
 // Post routes
-// NOTE: This version includes jwt checks, we should probably implement this using the code in the 'server/session' folder.
-// router.post("/", [checkJwt, checkJwt2], createPost);
-router.post('/api/posts/', createPost);
+router.post('/api/posts/', checkToken, createPost);
 // router.get("/api/posts/:id", getPost);
-// TOFIX: Doesn't look like the below route is used, seems like '/posts' in the user controller is the one used up to now.
 router.get('/mainfeed', checkToken, getAllPosts);
 router.delete('/api/posts/delete', deleteAllPosts);
 // router.get("/api/posts/posts", getAllPosts);

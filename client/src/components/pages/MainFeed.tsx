@@ -19,8 +19,8 @@ export const MainFeed = (): ReactElement => {
 	// use the index as the unique key. This needs to be fixed on the server side.
 	return (
 		<main className='flex h-[80vh] w-full items-center flex-col'>
-			<h1 className='mainfeed-title text-[5vh]'>MainFeed</h1>
-			<section className='overflow-auto'>
+			<h1 className='mainfeed-title text-[5vh] mt-4'>MainFeed</h1>
+			<section className='overflow-auto mt-4'>
 				{posts ? (
 					posts.map((post, index) => (
 						<div className='image-and-post' key={index}>
@@ -28,10 +28,12 @@ export const MainFeed = (): ReactElement => {
 								className='post-image object-cover'
 								src={`https://image.tmdb.org/t/p/w300${post.smallImage}`}
 							/>
-							<section className='post-container shadow-2xl'>
-								<p>{post.title}</p>
-								<p className='post-genre'>Genre: {post.genre}</p>
-								<p className='post-rating'>My Rating: {post.rating}</p>
+							<section className='post-container shadow-md'>
+								<div className='h-full px-2 flex flex-col justify-evenly'>
+									<p className='font-bold'>{post.title}</p>
+									<p>Genre: {post.genre}</p>
+									<p>My Rating: <span className='font-semibold'>{post.rating} / 10</span></p>
+								</div>
 							</section>
 						</div>
 					))

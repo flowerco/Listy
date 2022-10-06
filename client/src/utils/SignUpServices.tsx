@@ -3,7 +3,7 @@ export const createUser = async (
 	password: FormDataEntryValue | null
 ) => {
 	try {
-		const response = await fetch('http://localhost:3030/register', {
+		const response = await fetch(`http://localhost:${process.env.REACT_APP_PORT}/register`, {
 			method: 'POST',
 			headers: { 'Content-type': 'application/json' },
 			body: JSON.stringify({ email, password }),
