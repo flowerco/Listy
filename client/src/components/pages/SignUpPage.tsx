@@ -36,108 +36,106 @@ export default function SignUpPage() {
 			<Container
 				component='main'
 				maxWidth='xs'
-				className='flex flex-col  h-[50vh] m-auto shadow-2xl'
+				className='flex flex-col  h-[60vh] m-auto shadow-2xl'
 			>
 				<CssBaseline />
-				<div className='flex justify-center'>
+				<div className='flex flex-col items-center justify-evenly h-full py-4'>
 					<img
-						className='black-listy-nav-logo  h-[10vh]'
+						className='black-listy-nav-logo  h-1/5'
 						src={listyLogoBlack}
 					/>
-				</div>
-				<Box
-					sx={{
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-					}}
-				>
-					<Typography component='h1' variant='h5'>
-						Sign up
-					</Typography>
 					<Box
-						component='form'
-						noValidate
-						onSubmit={handleSubmit}
 						sx={{
 							display: 'flex',
-							mt: 2,
-							alignItems: 'center',
 							flexDirection: 'column',
-							margin: 'auto',
-							justifyContent: 'center',
-							position: 'static',
-							padding: '0 3rem',
+							alignItems: 'center',
 						}}
-					>
-						<Grid container spacing={2}>
-							<Grid item xs={12} sm={6}>
-								<TextField
-									autoComplete='given-name'
-									name='firstName'
-									required
-									fullWidth
-									id='firstName'
-									label='First Name'
-									autoFocus
-								/>
-							</Grid>
-							<Grid item xs={12} sm={6}>
-								<TextField
-									required
-									fullWidth
-									id='lastName'
-									label='Last Name'
-									name='lastName'
-									autoComplete='family-name'
-								/>
-							</Grid>
-							<Grid item xs={12}>
-								<TextField
-									required
-									fullWidth
-									id='email'
-									label='Email Address'
-									name='email'
-									autoComplete='email'
-								/>
-							</Grid>
-							<Grid item xs={12}>
-								<TextField
-									required
-									fullWidth
-									name='password'
-									label='Password'
-									type='password'
-									id='password'
-									autoComplete='new-password'
-								/>
-							</Grid>
-						</Grid>
-						<Button
-							type='submit'
-							fullWidth
-							variant='contained'
-							sx={{ mt: 3, mb: 2, backgroundColor: '#6b9080' }}
 						>
-							Sign Up
-						</Button>
-						<Grid
-							container
+							<Typography sx={{marginBottom: '1rem'}} component='h3' variant='h6'>
+								Sign up
+							</Typography>
+						<Box
+							component='form'
+							noValidate
+							onSubmit={handleSubmit}
 							sx={{
 								display: 'flex',
-								flexDirection: 'column',
 								alignItems: 'center',
+								flexDirection: 'column',
+								justifyContent: 'center',
+								position: 'static',
+								padding: '0 3rem',
 							}}
-						>
-							<Grid item>
-								<Link href='/login' variant='body2' sx={{ color: '#6b9080' }}>
-									Already have an account? Sign in
-								</Link>
+							>
+							<Grid container spacing={2}>
+								<Grid item xs={12} sm={6}>
+									<TextField
+										autoComplete='given-name'
+										name='firstName'
+										required
+										fullWidth
+										id='firstName'
+										label='First Name'
+										autoFocus
+										/>
+								</Grid>
+								<Grid item xs={12} sm={6}>
+									<TextField
+										required
+										fullWidth
+										id='lastName'
+										label='Last Name'
+										name='lastName'
+										autoComplete='family-name'
+										/>
+								</Grid>
+								<Grid item xs={12}>
+									<TextField
+										required
+										fullWidth
+										id='email'
+										label='Email Address'
+										name='email'
+										autoComplete='email'
+										/>
+								</Grid>
+								<Grid item xs={12}>
+									<TextField
+										required
+										fullWidth
+										name='password'
+										label='Password'
+										type='password'
+										id='password'
+										autoComplete='new-password'
+										/>
+								</Grid>
 							</Grid>
-						</Grid>
+							<Button
+								type='submit'
+								fullWidth
+								variant='contained'
+								sx={{ mt: 1, mb: 2, backgroundColor: '#6b9080' }}
+								>
+								Sign Up
+							</Button>
+							<Grid
+								container
+								sx={{
+									display: 'flex',
+									flexDirection: 'column',
+									alignItems: 'center',
+								}}
+								>
+								<Grid item>
+									<Link href='/login' variant='body2' sx={{ color: '#6b9080' }}>
+										Already have an account? Sign in
+									</Link>
+								</Grid>
+							</Grid>
+						</Box>
 					</Box>
-				</Box>
+				</div>
 			</Container>
 		</ThemeProvider>
 	);
