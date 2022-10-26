@@ -12,7 +12,7 @@ export const verifyUser = async (
 		const data = await response.json();
 		return data;
 	} catch (error) {
-		console.log('LOGIN SERVICE ERROR: ', error);
+		console.log('Login service error: ', error);
 		return new Error('Failed to Login at service');
 	}
 };

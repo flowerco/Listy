@@ -1,19 +1,16 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { useAppDispatch } from '../../redux/hooks';
 import { createUser } from '../../utils/SignUpServices';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import listyLogoBlack from '../../assets/listyLogoBlack.svg';
 
 const theme = createTheme();
@@ -25,7 +22,8 @@ export default function SignUpPage() {
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
-		const result = await createUser(data.get('email'), data.get('password'));
+		const username = `${data.get('firstName')} ${data.get('lastName')}`;
+		const result = await createUser(data.get('email'), data.get('password'), username);
 		if (result instanceof Error) return alert('Problem with sign up.');
 		dispatch({ type: 'LOGIN', payload: result._id });
 		navigate('/mainfeed');

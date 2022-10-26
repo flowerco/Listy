@@ -8,18 +8,15 @@ export const MainFeed = (): ReactElement => {
 
 	useEffect(() => {
 		fetchPosts().then((res) => {
-			console.log(res);
 			return setPosts(res);
 		});
 	}, []);
 
-	// TODO: The 'id' property is currently '' for all posts, so we
-	// use the index as the unique key. This needs to be fixed on the server side.
 	return (
 		<main className='flex h-[80vh] w-full items-center flex-col'>
 			<h1 className='mainfeed-title text-[5vh] mt-4'>MainFeed</h1>
 			<section className='overflow-auto mt-4'>
-				{posts ? (
+				{posts[0] ? (
 					posts.map((post, index) => (
 						<div className='image-and-post' key={index}>
 							<img
@@ -36,7 +33,7 @@ export const MainFeed = (): ReactElement => {
 						</div>
 					))
 				) : (
-					<h1>Go make a post!</h1>
+					<h1>No posts yet, head to the search page!</h1>
 				)}
 			</section>
 		</main>

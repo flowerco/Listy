@@ -30,11 +30,8 @@ export const expireSession = () => {
 
 export const getSession = (token: string) => {
   const sessionData = <SessionDataPayload>jwt.verify(token, SUPER_SECRET_KEY);
-
   if (sessionData.expiresAt < Date.now()) {
-    console.log('Token has expired.');
     return undefined;
   }
-
   return sessionData;
 } 

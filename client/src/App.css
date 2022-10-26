@@ -130,14 +130,14 @@
 	border-radius: 10px;
 }
 
-.friends-icon {
+/* .friends-icon {
 	display: flex;
 	position: fixed;
 	bottom: 83%;
 	right: 2%;
 	height: 5vh;
 	width: 5vh;
-}
+} */
 
 .profile-name {
 	font-size: clamp(1vw, 8vw, 25px);

@@ -1,5 +1,5 @@
 import './App.css';
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect } from 'react';
 import Profile from './components/cards/Profile';
 import LoginPage from './components/pages/LoginPage';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
@@ -20,7 +20,7 @@ function App(): ReactElement {
 		// If it returns a success status code then we will have validated
 		// the existing login and can set the state accordingly.
 		validateJwtCookie().then((res) => {
-			if (res !== 'LOGOUT') {
+			if (res && res !== 'LOGOUT') {
 				dispatch({ type: 'LOGIN', payload: res });
 			}
 		});

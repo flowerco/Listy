@@ -45,10 +45,8 @@ export const SearchPage = (): ReactElement => {
 	const handleMovieClick = async (movie: Movie) => {
 		setSearching(false);
 		setPopupActive(true);
-		console.log('Setting current movie: ', movie);
 		const categoryList = await fetchCategories();
 		const genreObj = categoryList.filter((cat: {id: number, name: string}) => cat.id.toString() === movie.genre)
-		console.log('Genre obj found: ', genreObj);
 		setMovie({
 			title: movie.title,
 			genre: genreObj[0].name,
@@ -68,17 +66,22 @@ export const SearchPage = (): ReactElement => {
 		rating: string,
 		event: React.MouseEvent<HTMLButtonElement>
 	) => {
-		const newPost = await postPost({
-			title: movie.title,
-			genre: movie.genre,
-			image: movie.image,
-			smallImage: movie.smallImage,
-			rating,
-			id: '',
-			userId: authState.userId,
-		});
-		console.log('New movie post: ', newPost);
-		closePopup();
+		const intRating = parseInt(rating);
+
+		if (intRating && intRating >= 0 && intRating <= 10) {
+			await postPost({
+				title: movie.title,
+				genre: movie.genre,
+				image: movie.image,
+				smallImage: movie.smallImage,
+				rating,
+				id: '',
+				userId: authState.userId,
+			});
+			closePopup();
+		} else {
+			return alert('Enter a rating from 0 to 10');
+		}
 	};
 
 	return authState.isAuthenticated ? (

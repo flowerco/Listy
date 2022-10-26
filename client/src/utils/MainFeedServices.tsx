@@ -10,19 +10,17 @@ export const fetchPosts: () => Promise<PostObj[]> = async () => {
 		});
 		return res.data;
 	} catch (error) {
-		console.log('MAINFEED FETCHPOST: ', error);
+		console.log('Error in Mainfeed fetchPost: ', error);
 	}
 };
 
 export const postPost = async (postObj: PostObj) => {
 	try {
-		console.log(postObj);
 		const res = await axios.post(postsBaseUrl + `/api/posts/`, postObj, {
 			withCredentials: true,
 		});
-		console.log('Posted to db: ', res.data);
 		return res.data;
 	} catch (error) {
-		console.log('MAINFEED POSTPOST: ', error);
+		console.log('Error in Mainfeed postPost: ', error);
 	}
 };

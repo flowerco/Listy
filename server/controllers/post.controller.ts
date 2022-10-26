@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { Post } from '../models/Post';
-import { User } from '../models/User';
+import { Post } from '../Models/Post';
+import { User } from '../Models/User';
 import jwt_decode from 'jwt-decode';
-import { CookieType } from '../models/customTypes';
+import { CookieType } from '../Models/customTypes';
 
 
 export const createPost = async (req: Request, res: Response) => {
@@ -16,6 +16,7 @@ export const createPost = async (req: Request, res: Response) => {
 			smallImage: req.body.smallImage,
 			likes: [],
 		});
+		console.log(post);
 		await post.save();
 		console.log(req.body);
 		res.status(201).json(post);
@@ -65,7 +66,7 @@ export const getPost = async (req: Request, res: Response) => {
 
 export const getAllPosts = async (req: Request, res: Response) => {
 	try {
-		const cookie: CookieType = jwt_decode(req.cookies.sessionJwt);
+		const cookie: CookieType = jwt_decode(req.cookies.listyJwt);
 		const currUser = await User.findById(cookie.userId);
 		const userPosts = await Post.find({ userId: cookie.userId });
 		const friendPosts = await Promise.all(
@@ -82,7 +83,7 @@ export const getAllPosts = async (req: Request, res: Response) => {
 
 export const deleteAllPosts = async (req: Request, res: Response) => {
   try {
-    const cookie: CookieType = jwt_decode(req.cookies.sessionJwt);
+    const cookie: CookieType = jwt_decode(req.cookies.listyJwt);
     await Post.deleteMany({ userId: cookie.userId });
     res.sendStatus(204);
   } catch (error) {

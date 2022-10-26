@@ -30,4 +30,13 @@ export type MovieCardData = {
   image: string
 }
 
+export type UserType = {
+	_id: string;
+	username: string;
+	email: string;
+	password: string;
+	followers: string[];
+	following: string[];
+};
+
 

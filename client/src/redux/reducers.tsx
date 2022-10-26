@@ -14,8 +14,6 @@ const authReducer = (
 	switch (action.type) {
 		case 'LOGIN':
 			const newstate = { isAuthenticated: true, userId: action.payload };
-			console.log(newstate);
-			
 			return newstate;
 		case 'LOGOUT':
 			return {

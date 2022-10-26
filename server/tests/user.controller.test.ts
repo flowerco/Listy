@@ -17,7 +17,6 @@ describe("Test Handlers", function () {
   it("create user", async () => {
     const response = await supertest.post("/register").send(mockUser);
 
-    console.log("Response body: ", response.body);
     expect(response.status).toEqual(200);
 
     it("responds to get /", async () => {

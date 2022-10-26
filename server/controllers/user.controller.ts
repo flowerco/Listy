@@ -1,6 +1,6 @@
-import { User } from '../models/User';
+import { User } from '../Models/User';
 import { Request, Response } from 'express';
-import { UserDoc } from '../models/customTypes';
+import { UserDoc } from '../Models/customTypes';
 
 export const getAllUsers = async (req: Request, res: Response) => {
 	const users = await User.find();
@@ -10,12 +10,11 @@ export const getAllUsers = async (req: Request, res: Response) => {
 export const getByNameOrId = async (req: Request, res: Response) => {
 	const userId = req.body.userId;
 	const username = req.body.username;
-	console.log(`Getting user with name: ${userId} and id: ${username}`);
 	try {
 		const user: UserDoc | null = userId
 			? await User.findById(userId)
 			: await User.findOne({ username: username });
-		//take away what we dont want to see
+		// remove properties we don't need
 		if (user) {
 			const { password, email, ...other } = user._doc;
 			res.send(other);
@@ -27,7 +26,6 @@ export const getByNameOrId = async (req: Request, res: Response) => {
 
 export const deleteUser = async (req: Request, res: Response) => {
 	const userId = req.body.userId;
-	console.log(`Deleting user with id: ${userId}`);
 	try {
 		await User.deleteOne({ _id: userId });
 		res.sendStatus(204);
@@ -40,21 +38,18 @@ export const deleteUser = async (req: Request, res: Response) => {
 export const toggleFollowUser = async (req: Request, res: Response) => {
 	const targetUserId = req.body.userId;
 	const currUserId = req.body.currUser;
-	console.log(`User ${currUserId} wants to follow/unfollow ${targetUserId}`);
 	try {
 		const currUser = await User.findById(currUserId);
 		const targetUser = await User.findById(targetUserId);
 		// If we currently follow the target user, then remove them from the followed list
 		if (currUser !== targetUser) {
 			if (currUser?.followers.includes(targetUserId)) {
-				console.log('Removing follower from targetUserId');
 				await currUser.updateOne({ $pull: { followers: targetUserId } });
 				await targetUser?.updateOne({ $pull: { following: currUserId } });
 				res.sendStatus(200);
 			}
 			// If we don't follow them yet, then add them to the followed list.
 			else {
-				console.log('Adding follower to targetUserId');
 				await currUser?.updateOne({ $push: { followers: targetUserId } });
 				await targetUser?.updateOne({ $push: { following: currUserId } });
 				res.sendStatus(200);
